@@ -13,7 +13,7 @@ Tài liệu này là quy trình để bạn chạy thử trên server. **Phần 
 | Phần mềm | Docker Engine ≥ 24 + Compose v2 + NVIDIA Container Toolkit (`docker run --gpus all … nvidia-smi` chạy được) | |
 
 Số VRAM/RAM ở trên là **ước tính từ kích thước file**, chưa đo trên máy bạn. Đo thật bằng `scripts/smoke_video.py` rồi xem tab **Báo cáo** (VRAM/RAM đỉnh).
-GPU Blackwell (RTX 50xx/B200): build worker với `--build-arg BASE=pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime` (chưa kiểm thử ở đây).
+Worker build mặc định với torch **cu128** (chạy GPU Ada/Hopper và Blackwell RTX 50xx/B200). GPU/driver cũ: đặt `WORKER_BASE_IMAGE=pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime` trong `.env`.
 
 Model theo nhóm (`scripts/download_models.py --list`):
 

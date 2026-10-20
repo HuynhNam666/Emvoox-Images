@@ -1,0 +1,207 @@
+{
+ "_note": "Phạm vi: nghiên cứu/nội bộ (user xác nhận 16/10/2026). Đọc license trang gốc trước khi tải. Không tải tự động các mục cần đăng ký. | Cập nhật 20/10/2026: thêm bản sao Hugging Face (license theo thẻ dataset trên HF, chưa phải điều khoản gốc), trường training_use/commercial, bộ ảnh tự sinh A01/A02 và 30 cảnh benchmark.",
+ "groups": {
+  "identity": [
+   "ffhq",
+   "celeba_hq",
+   "hibikimei",
+   "celeba_hq_256_hf",
+   "synthetic_a01_a02"
+  ],
+  "body": [
+   "deepfashion",
+   "shhq",
+   "synthetic_a01_a02"
+  ],
+  "expression": [
+   "fer2013",
+   "affectnet",
+   "hibikimei",
+   "fer2013_hf",
+   "synthetic_a01_a02"
+  ],
+  "pose": [
+   "coco_keypoints",
+   "mpii_hf",
+   "synthetic_a01_a02"
+  ],
+  "outfit": [
+   "deepfashion",
+   "deepfashion_inshop_hf",
+   "synthetic_a01_a02"
+  ],
+  "appearance": [
+   "hibikimei",
+   "synthetic_a01_a02"
+  ],
+  "style": [
+   "danbooru_meta",
+   "anime_faces_hf",
+   "synthetic_a01_a02"
+  ],
+  "scene": [
+   "unsplash_lite",
+   "places365",
+   "places365_val_hf",
+   "synthetic_a01_a02"
+  ]
+ },
+ "datasets": {
+  "ffhq": {
+   "url": "https://github.com/NVlabs/ffhq-dataset",
+   "license": "CC BY-NC-SA 4.0",
+   "access": "script",
+   "verified": true,
+   "imported": "Đã tải 300 ảnh 1024² (D:/emvoox-data/public/ffhq) -> dataset 'FFHQ — khuôn mặt ảnh thật'",
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "celeba_hq": {
+   "url": "https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html",
+   "license": "research only",
+   "access": "manual",
+   "verified": true,
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "hibikimei": {
+   "url": "https://huggingface.co/AICU",
+   "license": "CC BY-NC 4.0",
+   "access": "manual",
+   "verified": false,
+   "note": "25 ảnh 1 nhân vật; mẫu cấu trúc dataset, tìm đúng repo trên HF",
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "deepfashion": {
+   "url": "https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html",
+   "license": "non-commercial",
+   "access": "agreement",
+   "verified": true,
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "shhq": {
+   "url": "https://github.com/stylegan-human/StyleGAN-Human",
+   "license": "unknown",
+   "access": "request",
+   "verified": false,
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "fer2013": {
+   "url": "https://www.kaggle.com/c/Facial-Expression-Recognition",
+   "license": "CC BY 4.0 (thứ cấp)",
+   "access": "kaggle",
+   "verified": false,
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "affectnet": {
+   "url": "http://mohammadmahoor.com/affectnet/",
+   "license": "non-commercial",
+   "access": "agreement",
+   "verified": false,
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "coco_keypoints": {
+   "url": "https://cocodataset.org",
+   "license": "annotations CC BY 4.0; ảnh hỗn hợp",
+   "access": "direct",
+   "verified": false,
+   "imported": "Đã tải val2017 + annotations -> dataset 'COCO val2017 — người (tư thế)' (51 ảnh dùng được)",
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "danbooru_meta": {
+   "url": "https://huggingface.co/datasets/KBlueLeaf/Danbooru2021-SQLite",
+   "license": "unknown",
+   "access": "hf",
+   "verified": false,
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "unsplash_lite": {
+   "url": "https://github.com/unsplash/datasets",
+   "license": "Unsplash Dataset Lite terms",
+   "access": "direct",
+   "verified": true,
+   "imported": "Đã tải Lite + 600 ảnh -> dataset 'Unsplash Lite — bối cảnh' (599 ảnh)",
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "places365": {
+   "url": "http://places2.csail.mit.edu/",
+   "license": "unknown",
+   "access": "direct",
+   "verified": false,
+   "commercial": "unknown",
+   "training_use": "xem docs/DATASETS.md"
+  },
+  "places365_val_hf": {
+   "url": "https://huggingface.co/datasets/rumenguin/places365-val",
+   "license": "MIT (thẻ HF của bản sao); điều khoản dữ liệu gốc Places365 chưa xác minh",
+   "access": "hf",
+   "verified": false,
+   "commercial": "unknown",
+   "training_use": "không: ảnh 256px < ngưỡng 512px của Dataset Manager (tự bị loại low_resolution); chỉ làm tham chiếu/đánh giá bối cảnh"
+  },
+  "fer2013_hf": {
+   "url": "https://huggingface.co/datasets/Jeneral/fer-2013",
+   "license": "Apache-2.0 (thẻ HF của bản sao); dữ liệu gốc Kaggle FER2013 chưa xác minh",
+   "access": "hf",
+   "verified": false,
+   "commercial": "unknown",
+   "training_use": "không: ảnh 48×48 xám; chỉ làm nhãn biểu cảm tham chiếu"
+  },
+  "mpii_hf": {
+   "url": "https://huggingface.co/datasets/Voxel51/MPII_Human_Pose_Dataset",
+   "license": "BSD-2-Clause (chú thích); ảnh gốc từ video YouTube — chỉ nghiên cứu",
+   "access": "hf",
+   "verified": false,
+   "commercial": "no",
+   "training_use": "tư thế/skeleton cho ControlNet (nghiên cứu); chưa tích hợp ControlNet"
+  },
+  "anime_faces_hf": {
+   "url": "https://huggingface.co/datasets/huggan/anime-faces",
+   "license": "CC0-1.0 (thẻ HF)",
+   "access": "hf",
+   "verified": false,
+   "commercial": "yes",
+   "training_use": "không: ảnh 64px; không đủ cho Style LoRA"
+  },
+  "celeba_hq_256_hf": {
+   "url": "https://huggingface.co/datasets/korexyz/celeba-hq-256x256",
+   "license": "chỉ nghiên cứu (CelebA-HQ gốc)",
+   "access": "hf",
+   "verified": false,
+   "commercial": "no",
+   "training_use": "không: 256px; chỉ đánh giá"
+  },
+  "deepfashion_inshop_hf": {
+   "url": "https://huggingface.co/datasets/Marqo/deepfashion-inshop",
+   "license": "phi thương mại (DeepFashion gốc cần thỏa thuận)",
+   "access": "hf",
+   "verified": false,
+   "commercial": "no",
+   "training_use": "nghiên cứu trang phục; không đưa vào model phát hành"
+  },
+  "synthetic_a01_a02": {
+   "url": "backend/scripts/expand_library.py",
+   "license": "Ảnh AI tự sinh trong hệ thống (quyền theo giấy phép model sinh ảnh; Apache-2.0 cho Klein/Qwen/Z-Image, RAIL++-M cho SDXL)",
+   "access": "script",
+   "verified": true,
+   "commercial": "yes",
+   "training_use": "CHÍNH: nguồn duy nhất đúng danh tính cho nhóm 1–6 và mở rộng thư viện 200–300 ảnh/nhân vật (báo cáo mục 3.1); ảnh vẫn phải duyệt tay"
+  },
+  "benchmark_scenes_30": {
+   "url": "backend/app/visual/benchmark_scenes.json",
+   "license": "Tự soạn (nội bộ)",
+   "access": "file",
+   "verified": true,
+   "commercial": "yes",
+   "training_use": "không dùng để train: 30 cảnh × 6 nhóm cho benchmark chấm mù"
+  }
+ }
+}

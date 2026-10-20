@@ -1,0 +1,418 @@
+[
+ {
+  "group": "identity",
+  "caption": "front view close-up, neutral expression",
+  "asset_id": "3a2b8e1d-b633-43b6-9d90-775b7cff2afe",
+  "face": true,
+  "sim_anchor": 1.0,
+  "sim_mean": 0.951
+ },
+ {
+  "group": "identity",
+  "caption": "left profile close-up",
+  "asset_id": "7f5f5abb-bde3-4d95-9c07-1d09ff4c6ebe",
+  "face": true,
+  "sim_anchor": 0.902,
+  "sim_mean": 0.952
+ },
+ {
+  "group": "identity",
+  "caption": "right profile close-up",
+  "asset_id": "8be16a88-abd5-420d-95e8-53a12c5dbfb1",
+  "face": true,
+  "sim_anchor": 0.932,
+  "sim_mean": 0.936
+ },
+ {
+  "group": "identity",
+  "caption": "three-quarter view from the left, close-up",
+  "asset_id": "848f6aa0-4b87-4b28-9917-89920fe38bb4",
+  "face": true,
+  "sim_anchor": 0.919,
+  "sim_mean": 0.951
+ },
+ {
+  "group": "identity",
+  "caption": "three-quarter view from the right, close-up",
+  "asset_id": "1c0d52d3-950d-490a-9c0b-e03b3217b42d",
+  "face": true,
+  "sim_anchor": 0.926,
+  "sim_mean": 0.973
+ },
+ {
+  "group": "identity",
+  "caption": "chin raised, looking up, close-up",
+  "asset_id": "5611a2b0-d541-4b97-95c2-8a5c0afd0bc2",
+  "face": true,
+  "sim_anchor": 0.902,
+  "sim_mean": 0.953
+ },
+ {
+  "group": "body",
+  "caption": "full body, front view",
+  "asset_id": "14bf6da8-4915-4c08-a9bb-2b8a332a9d19",
+  "face": true,
+  "sim_anchor": 0.903,
+  "sim_mean": 0.958
+ },
+ {
+  "group": "body",
+  "caption": "full body, back view",
+  "asset_id": "001e387d-56e8-4bd7-b9a8-d46bedd30fd3",
+  "face": true,
+  "sim_anchor": 0.873,
+  "sim_mean": 0.935
+ },
+ {
+  "group": "body",
+  "caption": "full body, left side view",
+  "asset_id": "30b9f526-1576-45a9-88fa-67725afa9bbf",
+  "face": true,
+  "sim_anchor": 0.853,
+  "sim_mean": 0.926
+ },
+ {
+  "group": "body",
+  "caption": "full body, right side view",
+  "asset_id": "0489dd18-568f-43d5-a2c3-22ff1be0a49a",
+  "face": true,
+  "sim_anchor": 0.842,
+  "sim_mean": 0.924
+ },
+ {
+  "group": "body",
+  "caption": "waist-up, front view",
+  "asset_id": "edaeeb4e-a94f-4509-a9d6-6c37e301fa8e",
+  "face": true,
+  "sim_anchor": 0.937,
+  "sim_mean": 0.916
+ },
+ {
+  "group": "expression",
+  "caption": "neutral expression",
+  "asset_id": "a166e812-767d-4833-9854-e1d3474e4e00",
+  "face": true,
+  "sim_anchor": 0.83,
+  "sim_mean": 0.928
+ },
+ {
+  "group": "expression",
+  "caption": "happy, smiling",
+  "asset_id": "6e4252ae-c38f-47b2-949a-54202e82d22a",
+  "face": true,
+  "sim_anchor": 0.925,
+  "sim_mean": 0.972
+ },
+ {
+  "group": "expression",
+  "caption": "sad expression",
+  "asset_id": "1d34ba44-38d5-4ff2-be4e-ed68a4ceb0e4",
+  "face": true,
+  "sim_anchor": 0.905,
+  "sim_mean": 0.897
+ },
+ {
+  "group": "expression",
+  "caption": "angry expression",
+  "asset_id": "a7b3de03-37b9-48dd-a450-c1224f974b5d",
+  "face": true,
+  "sim_anchor": 0.925,
+  "sim_mean": 0.95
+ },
+ {
+  "group": "expression",
+  "caption": "surprised expression",
+  "asset_id": "7b77215e-1441-4847-ba46-aec684aec983",
+  "face": true,
+  "sim_anchor": 0.909,
+  "sim_mean": 0.956
+ },
+ {
+  "group": "expression",
+  "caption": "worried expression",
+  "asset_id": "ad7a0c98-f7b8-4510-91f5-5967ede96f88",
+  "face": true,
+  "sim_anchor": 0.966,
+  "sim_mean": 0.965
+ },
+ {
+  "group": "pose",
+  "caption": "standing, arms at sides",
+  "asset_id": "8a5d8b0e-cbd4-4586-854a-036be6b22075",
+  "face": true,
+  "sim_anchor": 0.922,
+  "sim_mean": 0.952
+ },
+ {
+  "group": "pose",
+  "caption": "sitting on a chair",
+  "asset_id": "2d131424-8ed4-4cb9-8bb8-bf1c0f8db03a",
+  "face": true,
+  "sim_anchor": 0.794,
+  "sim_mean": 0.885
+ },
+ {
+  "group": "pose",
+  "caption": "walking",
+  "asset_id": "ed702c94-ed8a-4b4b-89a6-59f3ccbea987",
+  "face": true,
+  "sim_anchor": 0.908,
+  "sim_mean": 0.949
+ },
+ {
+  "group": "pose",
+  "caption": "running",
+  "asset_id": "6ed5139e-2668-419b-9c51-b2bd0942f7bc",
+  "face": true,
+  "sim_anchor": 0.868,
+  "sim_mean": 0.939
+ },
+ {
+  "group": "pose",
+  "caption": "bending forward",
+  "asset_id": "9c70a92b-3b6b-431a-bee1-73142cd6e67d",
+  "face": true,
+  "sim_anchor": 0.864,
+  "sim_mean": 0.931
+ },
+ {
+  "group": "pose",
+  "caption": "holding a coffee cup",
+  "asset_id": "0cf25024-0be3-4ed7-812b-d5eb76ae026e",
+  "face": true,
+  "sim_anchor": 0.935,
+  "sim_mean": 0.946
+ },
+ {
+  "group": "outfit",
+  "caption": "white shirt, full body",
+  "asset_id": "f428328b-1153-42cd-87bf-337ca34f824c",
+  "face": true,
+  "sim_anchor": 0.751,
+  "sim_mean": 0.868
+ },
+ {
+  "group": "outfit",
+  "caption": "black suit, full body",
+  "asset_id": "1c6724da-07f6-49b0-a711-aa0e975628fb",
+  "face": true,
+  "sim_anchor": 0.848,
+  "sim_mean": 0.933
+ },
+ {
+  "group": "outfit",
+  "caption": "casual hoodie and jeans, full body",
+  "asset_id": "0cafb980-0d58-4db2-98bd-a134e6e02370",
+  "face": true,
+  "sim_anchor": 0.855,
+  "sim_mean": 0.908
+ },
+ {
+  "group": "outfit",
+  "caption": "navy jacket, upper body detail",
+  "asset_id": "feea2daa-6951-47ae-a9f9-cdf1de7c2c86",
+  "face": true,
+  "sim_anchor": 0.905,
+  "sim_mean": 0.952
+ },
+ {
+  "group": "appearance",
+  "caption": "wearing black-framed glasses",
+  "asset_id": "b6813d06-93d5-4f87-962f-639ce84848d8",
+  "face": true,
+  "sim_anchor": 0.894,
+  "sim_mean": 0.936
+ },
+ {
+  "group": "appearance",
+  "caption": "wearing a black cap",
+  "asset_id": "1cd26282-b179-4627-b96c-72c99b520392",
+  "face": true,
+  "sim_anchor": 0.941,
+  "sim_mean": 0.941
+ },
+ {
+  "group": "appearance",
+  "caption": "wearing a silver wristwatch",
+  "asset_id": "25fe7944-e9c2-4ac7-9a2b-e709844ae644",
+  "face": true,
+  "sim_anchor": 0.913,
+  "sim_mean": 0.963
+ },
+ {
+  "group": "style",
+  "caption": "cinematic film look, warm tones",
+  "asset_id": "60bce961-e71b-478a-94f4-d2ecb43048a6",
+  "face": true,
+  "sim_anchor": 0.944,
+  "sim_mean": 0.96
+ },
+ {
+  "group": "style",
+  "caption": "studio portrait lighting",
+  "asset_id": "9ad88fb3-2cd4-492c-8909-8fc3ca8da086",
+  "face": true,
+  "sim_anchor": 0.956,
+  "sim_mean": 0.949
+ },
+ {
+  "group": "style",
+  "caption": "outdoor golden hour",
+  "asset_id": "58fff423-450d-44c9-aa3d-f849f5a88e21",
+  "face": true,
+  "sim_anchor": 0.92,
+  "sim_mean": 0.94
+ },
+ {
+  "group": "scene",
+  "caption": "in a library",
+  "asset_id": "c8929390-1e4b-4f62-8527-9a8f1b0ce77d",
+  "face": true,
+  "sim_anchor": 0.922,
+  "sim_mean": 0.965
+ },
+ {
+  "group": "scene",
+  "caption": "on a city street in the daytime",
+  "asset_id": "2453d121-9603-47d1-94cf-fd30bcfa4d6d",
+  "face": true,
+  "sim_anchor": 0.936,
+  "sim_mean": 0.955
+ },
+ {
+  "group": "scene",
+  "caption": "on a city street at night",
+  "asset_id": "d34d23c1-ee75-4499-bad8-590e7b2c7d25",
+  "face": true,
+  "sim_anchor": 0.926,
+  "sim_mean": 0.931
+ },
+ {
+  "group": "scene",
+  "caption": "in an office",
+  "asset_id": "fb9f6e05-a1eb-4507-83e8-2ebe38665a10",
+  "face": true,
+  "sim_anchor": 0.89,
+  "sim_mean": 0.94
+ },
+ {
+  "group": "scene",
+  "caption": "in a bedroom",
+  "asset_id": "631776e5-2f47-47bb-8a11-bd59586ea5f0",
+  "face": true,
+  "sim_anchor": 0.933,
+  "sim_mean": 0.934
+ },
+ {
+  "group": "appearance",
+  "caption": "wearing black-framed glasses",
+  "asset_id": "7d4d09c1-8537-424a-8d3a-c73773b5326a",
+  "face": true,
+  "sim_anchor": 0.815,
+  "sim_mean": 0.886
+ },
+ {
+  "group": "appearance",
+  "caption": "wearing a black cap",
+  "asset_id": "39cf2e4e-29de-4a78-9dd4-608435e61064",
+  "face": true,
+  "sim_anchor": 0.876,
+  "sim_mean": 0.928
+ },
+ {
+  "group": "appearance",
+  "caption": "showing a silver wristwatch",
+  "asset_id": "319f77f3-60a9-404c-8a6e-46e1e24481f1",
+  "face": true,
+  "sim_anchor": 0.842,
+  "sim_mean": 0.929
+ },
+ {
+  "group": "expression",
+  "caption": "neutral expression, mouth closed",
+  "asset_id": "fbb4ebc1-657a-48aa-8191-faeba176cd85",
+  "face": true,
+  "sim_anchor": 0.919,
+  "sim_mean": 0.967
+ },
+ {
+  "group": "expression",
+  "caption": "sad expression",
+  "asset_id": "5b621c2c-19e4-4595-8a59-49c319bc4953",
+  "face": true,
+  "sim_anchor": 0.813,
+  "sim_mean": 0.91
+ },
+ {
+  "group": "expression",
+  "caption": "angry expression",
+  "asset_id": "0d9fc84e-7839-4f89-b026-b54040624ef2",
+  "face": true,
+  "sim_anchor": 0.892,
+  "sim_mean": 0.946
+ },
+ {
+  "group": "expression",
+  "caption": "surprised expression",
+  "asset_id": "23a4f4f9-b036-41d8-9ab6-b70e815f4f0b",
+  "face": true,
+  "sim_anchor": 0.882,
+  "sim_mean": 0.947
+ },
+ {
+  "group": "expression",
+  "caption": "worried expression",
+  "asset_id": "b88745f8-5096-4c5f-9261-988af1915e20",
+  "face": true,
+  "sim_anchor": 0.888,
+  "sim_mean": 0.927
+ },
+ {
+  "group": "pose",
+  "caption": "walking forward",
+  "asset_id": "45bf0028-4ded-4d59-a7ce-9240d2ae6ff2",
+  "face": true,
+  "sim_anchor": 0.768,
+  "sim_mean": 0.874
+ },
+ {
+  "group": "pose",
+  "caption": "running",
+  "asset_id": "dfab78a2-b617-4343-8051-ada1edac28ef",
+  "face": true,
+  "sim_anchor": 0.865,
+  "sim_mean": 0.946
+ },
+ {
+  "group": "pose",
+  "caption": "bending forward",
+  "asset_id": "3ff892a0-4d75-4ea1-be10-454902d3d2f2",
+  "face": true,
+  "sim_anchor": 0.838,
+  "sim_mean": 0.903
+ },
+ {
+  "group": "body",
+  "caption": "full body, front view, head to toe",
+  "asset_id": "96bd76f2-1acf-4ff0-9f84-25533e80baa7",
+  "face": true,
+  "sim_anchor": 0.528,
+  "sim_mean": 0.6
+ },
+ {
+  "group": "body",
+  "caption": "full body, side view, head to toe",
+  "asset_id": "32919d0c-3012-4208-b3e3-3fb5bb2f31f4",
+  "face": true,
+  "sim_anchor": 0.922,
+  "sim_mean": 0.952
+ },
+ {
+  "group": "body",
+  "caption": "full body, back view, head to toe",
+  "asset_id": "b2cd5d3b-bb37-4ab8-aa1c-0ac73395ee17",
+  "face": true,
+  "sim_anchor": 0.817,
+  "sim_mean": 0.889
+ }
+]

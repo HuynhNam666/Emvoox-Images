@@ -1,0 +1,8 @@
+# HTTPS tự động (Let's Encrypt) cho server công khai. Bật bằng: docker compose --profile tls up -d  (đặt DOMAIN trong .env)
+{$DOMAIN} {
+	encode zstd gzip
+	request_body {
+		max_size 600MB
+	}
+	reverse_proxy web:80
+}

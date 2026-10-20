@@ -1,0 +1,48 @@
+{
+  "_note": "30 cảnh benchmark theo báo cáo EMVOOX1 mục 1.2: 6 nhóm x 5 cảnh. Mã nhân vật A01/A02 được thay bằng phiên bản hiện hành khi tạo lượt chạy. Nội dung cảnh là mẫu khởi điểm để chạy được ngay, chủ dự án nên thay bằng cảnh thật của tập phim trước khi chốt model.",
+  "groups": {
+    "portrait": "Chân dung",
+    "fullbody": "Toàn thân và tư thế khó",
+    "expression": "Biểu cảm",
+    "two_people": "Hai nhân vật tương tác",
+    "light_costume": "Thay đổi ánh sáng và trang phục",
+    "sequence": "Chuỗi cảnh cần giữ nhận dạng"
+  },
+  "scenes": [
+    {"id": "P01", "group": "portrait", "characters": ["A01"], "action": "looks straight at the camera with a calm face", "emotion": "neutral", "camera": {"size": "close-up portrait", "angle": "eye level"}, "lighting": "soft window light from camera left", "style": "cinematic realistic"},
+    {"id": "P02", "group": "portrait", "characters": ["A02"], "action": "glances over the shoulder toward the camera", "emotion": "curious", "camera": {"size": "medium close-up", "angle": "eye level"}, "lighting": "warm evening side light", "style": "cinematic realistic"},
+    {"id": "P03", "group": "portrait", "characters": ["A01"], "action": "stands by a rainy window, face lit by city lights", "emotion": "thoughtful", "camera": {"size": "close-up", "angle": "slightly low angle"}, "lighting": "cool neon rim light", "style": "cinematic realistic"},
+    {"id": "P04", "group": "portrait", "characters": ["A02"], "action": "looks down at a phone screen in a cafe", "emotion": "focused", "camera": {"size": "medium close-up", "angle": "high angle"}, "lighting": "soft overcast daylight", "style": "cinematic realistic"},
+    {"id": "P05", "group": "portrait", "characters": ["A01"], "action": "turns head slowly toward a door", "emotion": "alert", "camera": {"size": "close-up", "angle": "eye level"}, "lighting": "hard top light with deep shadows", "style": "cinematic realistic"},
+
+    {"id": "F01", "group": "fullbody", "characters": ["A01"], "action": "walks down a corridor, mid-stride", "emotion": "determined", "camera": {"size": "full body shot", "angle": "eye level"}, "lighting": "even indoor light", "style": "cinematic realistic"},
+    {"id": "F02", "group": "fullbody", "characters": ["A02"], "action": "crouches to pick up a dropped bag", "emotion": "hurried", "camera": {"size": "full body shot", "angle": "eye level"}, "lighting": "daylight through windows", "style": "cinematic realistic"},
+    {"id": "F03", "group": "fullbody", "characters": ["A01"], "action": "reaches up to a high shelf on tiptoe", "emotion": "strained", "camera": {"size": "full body shot", "angle": "slightly low angle"}, "lighting": "warm room light", "style": "cinematic realistic"},
+    {"id": "F04", "group": "fullbody", "characters": ["A02"], "action": "sits cross-legged on the floor and holds a cup with both hands", "emotion": "relaxed", "camera": {"size": "full body shot", "angle": "eye level"}, "lighting": "soft lamp light", "style": "cinematic realistic"},
+    {"id": "F05", "group": "fullbody", "characters": ["A01"], "action": "runs toward the camera, arms swinging", "emotion": "panicked", "camera": {"size": "wide shot", "angle": "low angle"}, "lighting": "late afternoon backlight", "style": "cinematic realistic"},
+
+    {"id": "E01", "group": "expression", "characters": ["A01"], "action": "laughs out loud", "emotion": "joyful", "camera": {"size": "close-up", "angle": "eye level"}, "lighting": "bright daylight", "style": "cinematic realistic"},
+    {"id": "E02", "group": "expression", "characters": ["A02"], "action": "tears roll down while trying not to cry", "emotion": "sad", "camera": {"size": "close-up", "angle": "eye level"}, "lighting": "dim bluish light", "style": "cinematic realistic"},
+    {"id": "E03", "group": "expression", "characters": ["A01"], "action": "frowns and clenches his jaw", "emotion": "angry", "camera": {"size": "close-up", "angle": "eye level"}, "lighting": "hard side light", "style": "cinematic realistic"},
+    {"id": "E04", "group": "expression", "characters": ["A02"], "action": "eyes wide, mouth slightly open", "emotion": "surprised", "camera": {"size": "close-up", "angle": "eye level"}, "lighting": "soft frontal light", "style": "cinematic realistic"},
+    {"id": "E05", "group": "expression", "characters": ["A01"], "action": "smirks faintly and raises one eyebrow", "emotion": "smug", "camera": {"size": "medium close-up", "angle": "eye level"}, "lighting": "warm practical lamp light", "style": "cinematic realistic"},
+
+    {"id": "T01", "group": "two_people", "characters": ["A01", "A02"], "action": "face each other and talk across a small table", "emotion": "tense", "camera": {"size": "medium two-shot", "angle": "eye level"}, "lighting": "pendant lamp above the table", "style": "cinematic realistic"},
+    {"id": "T02", "group": "two_people", "characters": ["A01", "A02"], "action": "A01 hands a small envelope to A02", "emotion": "serious", "camera": {"size": "medium shot", "angle": "eye level"}, "lighting": "soft window light", "style": "cinematic realistic"},
+    {"id": "T03", "group": "two_people", "characters": ["A01", "A02"], "action": "walk side by side down a street, A01 on the left", "emotion": "calm", "camera": {"size": "wide shot", "angle": "eye level"}, "lighting": "overcast daylight", "style": "cinematic realistic"},
+    {"id": "T04", "group": "two_people", "characters": ["A01", "A02"], "action": "hug tightly", "emotion": "relieved", "camera": {"size": "medium shot", "angle": "eye level"}, "lighting": "golden hour light", "style": "cinematic realistic"},
+    {"id": "T05", "group": "two_people", "characters": ["A01", "A02"], "action": "A02 stands in the doorway while A01 sits at a desk, looking up", "emotion": "uneasy", "camera": {"size": "medium wide shot", "angle": "eye level"}, "lighting": "desk lamp and corridor light", "style": "cinematic realistic"},
+
+    {"id": "L01", "group": "light_costume", "characters": ["A01"], "action": "stands in a corridor wearing a white shirt", "emotion": "neutral", "camera": {"size": "medium shot", "angle": "eye level"}, "lighting": "soft window light from camera left", "style": "cinematic realistic"},
+    {"id": "L02", "group": "light_costume", "characters": ["A01"], "action": "stands in the same corridor wearing a dark jacket", "emotion": "neutral", "camera": {"size": "medium shot", "angle": "eye level"}, "lighting": "soft window light from camera left", "style": "cinematic realistic"},
+    {"id": "L03", "group": "light_costume", "characters": ["A02"], "action": "stands in a room lit only by candlelight", "emotion": "calm", "camera": {"size": "medium shot", "angle": "eye level"}, "lighting": "single warm candle light, deep shadows", "style": "cinematic realistic"},
+    {"id": "L04", "group": "light_costume", "characters": ["A02"], "action": "stands outdoors at noon wearing a summer dress", "emotion": "cheerful", "camera": {"size": "medium shot", "angle": "eye level"}, "lighting": "harsh midday sun", "style": "cinematic realistic"},
+    {"id": "L05", "group": "light_costume", "characters": ["A01"], "action": "stands on a night street wearing a raincoat", "emotion": "tired", "camera": {"size": "medium shot", "angle": "eye level"}, "lighting": "neon signs and wet reflections", "style": "cinematic realistic"},
+
+    {"id": "S01", "group": "sequence", "characters": ["A01"], "action": "enters the room and looks around", "emotion": "cautious", "camera": {"size": "wide shot", "angle": "eye level"}, "lighting": "warm interior light", "style": "cinematic realistic"},
+    {"id": "S02", "group": "sequence", "characters": ["A01"], "action": "walks to the window and looks outside", "emotion": "cautious", "camera": {"size": "medium shot", "angle": "eye level"}, "lighting": "warm interior light", "style": "cinematic realistic"},
+    {"id": "S03", "group": "sequence", "characters": ["A01"], "action": "turns around, noticing something off-screen", "emotion": "alarmed", "camera": {"size": "close-up", "angle": "eye level"}, "lighting": "warm interior light", "style": "cinematic realistic"},
+    {"id": "S04", "group": "sequence", "characters": ["A01"], "action": "backs away with a hand raised", "emotion": "afraid", "camera": {"size": "medium shot", "angle": "slightly high angle"}, "lighting": "warm interior light", "style": "cinematic realistic"},
+    {"id": "S05", "group": "sequence", "characters": ["A01"], "action": "runs out through the door", "emotion": "panicked", "camera": {"size": "wide shot", "angle": "eye level"}, "lighting": "warm interior light", "style": "cinematic realistic"}
+  ]
+}

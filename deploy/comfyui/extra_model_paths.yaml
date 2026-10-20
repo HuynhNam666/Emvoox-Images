@@ -1,0 +1,9 @@
+# Model của ComfyUI nằm trong volume dùng chung với worker (do scripts/download_models.py tải về).
+emvoox:
+  base_path: /data/models/comfyui/
+  diffusion_models: diffusion_models/
+  unet: diffusion_models/
+  text_encoders: text_encoders/
+  clip: text_encoders/
+  vae: vae/
+  loras: loras/

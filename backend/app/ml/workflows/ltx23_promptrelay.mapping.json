@@ -1,0 +1,19 @@
+{
+  "version": "ltx23-promptrelay-1",
+  "model_version": "ltx-2.3-22b-distilled-1.1 (transformer_only_fp8_scaled) + gemma-3-12b-it fp8 + PromptRelayEncode",
+  "segment_format": "pipe_plain",
+  "params": {
+    "image": [["5", "image"]],
+    "width": [["7", "width"]],
+    "height": [["7", "height"]],
+    "frame_count": [["7", "length"], ["9", "frames_number"]],
+    "fps": [["9", "frame_rate"], ["13", "frame_rate"], ["20", "frame_rate"]],
+    "seed": [["16", "noise_seed"]],
+    "global_prompt": [["11", "global_prompt"]],
+    "local_prompts": [["11", "local_prompts"]],
+    "segment_lengths": [["11", "segment_lengths"]],
+    "filename_prefix": [["20", "filename_prefix"]]
+  },
+  "audio_inputs_dropped_when_no_audio": [["20", "audio"]],
+  "output_node": "20"
+}

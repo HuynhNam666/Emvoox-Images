@@ -1,0 +1,16 @@
+[
+  {"group": "appearance", "caption": "wearing black-framed glasses", "suffix": "close-up portrait, front view, wearing thin black-framed round glasses on her face, glasses clearly visible, white t-shirt, plain background", "scale": 0.3, "seed": 701},
+  {"group": "appearance", "caption": "wearing a black cap", "suffix": "close-up portrait, wearing a black baseball cap on her head, cap clearly visible, long black hair coming out from under the cap, grey t-shirt, plain background", "scale": 0.3, "seed": 702},
+  {"group": "appearance", "caption": "showing a silver wristwatch", "suffix": "medium shot, raising her left hand to show a large silver wristwatch on the wrist, watch clearly visible, white shirt, plain background", "scale": 0.3, "seed": 703},
+  {"group": "expression", "caption": "neutral expression, mouth closed", "suffix": "close-up portrait, front view, neutral expression, mouth closed, no smile, calm eyes, grey t-shirt, soft light", "scale": 0.3, "seed": 711},
+  {"group": "expression", "caption": "sad expression", "suffix": "close-up portrait, front view, sad expression, downturned mouth, teary eyes, no smile, grey t-shirt, soft light", "scale": 0.3, "seed": 712},
+  {"group": "expression", "caption": "angry expression", "suffix": "close-up portrait, front view, angry expression, furrowed eyebrows, frowning, no smile, grey t-shirt, soft light", "scale": 0.3, "seed": 713},
+  {"group": "expression", "caption": "surprised expression", "suffix": "close-up portrait, front view, surprised expression, wide open eyes, open mouth, grey t-shirt, soft light", "scale": 0.3, "seed": 714},
+  {"group": "expression", "caption": "worried expression", "suffix": "close-up portrait, front view, worried anxious expression, raised inner eyebrows, no smile, grey t-shirt, soft light", "scale": 0.3, "seed": 715},
+  {"group": "pose", "caption": "walking forward", "suffix": "full body, walking forward mid-stride on a plain floor, arms swinging, navy top and jeans, light grey wall", "scale": 0.3, "seed": 721},
+  {"group": "pose", "caption": "running", "suffix": "full body, running, dynamic motion, sportswear, light grey wall", "scale": 0.3, "seed": 722},
+  {"group": "pose", "caption": "bending forward", "suffix": "full body, bending forward to pick up a bag from the floor, navy top and jeans, light grey wall", "scale": 0.3, "seed": 723},
+  {"group": "body", "caption": "full body, front view, head to toe", "suffix": "full body shot from head to toe including shoes, standing, front view, white blouse and black trousers, plain studio background", "scale": 0.3, "seed": 731},
+  {"group": "body", "caption": "full body, side view, head to toe", "suffix": "full body shot from head to toe including shoes, standing in true side profile view, white blouse and black trousers, plain studio background", "scale": 0.3, "seed": 732},
+  {"group": "body", "caption": "full body, back view, head to toe", "suffix": "full body shot from head to toe including shoes, standing seen fully from behind, back view, white blouse and black trousers, plain studio background", "scale": 0.3, "seed": 733}
+]

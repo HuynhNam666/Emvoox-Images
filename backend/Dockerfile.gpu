@@ -1,0 +1,13 @@
+# Worker GPU: tạo ảnh (SDXL, FLUX.2 Klein, Qwen-Image, Z-Image), Quality Gate (FaceNet), train LoRA, điều phối video.
+# Cần NVIDIA driver + NVIDIA Container Toolkit. Build context = thư mục backend/.
+# GPU Blackwell (RTX 50xx/B200) cần torch cu128: --build-arg BASE=pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime (chưa kiểm thử ở đây).
+ARG BASE=pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
+FROM ${BASE}
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUTF8=1 TORCH_HOME=/data/models/torch
+WORKDIR /app
+COPY requirements.txt requirements-gpu.txt ./
+RUN pip install --no-cache-dir -r requirements-gpu.txt \
+    && pip install --no-cache-dir --no-deps facenet-pytorch==2.6.0
+COPY . /app/
+# Pool "solo": một tiến trình, một job nặng mỗi lúc (một GPU một job). Không dùng prefork với CUDA.
+CMD ["celery", "-A", "app.workers.celery_app", "worker", "-Q", "generation,training,video,visual", "-P", "solo", "-c", "1", "--loglevel=info"]

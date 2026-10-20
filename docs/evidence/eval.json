@@ -1,0 +1,359 @@
+{
+ "loo_p10": 0.7194881439208984,
+ "loo_median": 0.9271631240844727,
+ "arms": {
+  "A": {
+   "label": "không LoRA + mô tả chữ",
+   "n": 12,
+   "face_detected": 12,
+   "mean_sim": 0.693,
+   "std": 0.103,
+   "frac_ge_loo_p10": 0.417,
+   "errors": 0
+  },
+  "B": {
+   "label": "LoRA (chỉ trigger)",
+   "n": 12,
+   "face_detected": 12,
+   "mean_sim": 0.51,
+   "std": 0.188,
+   "frac_ge_loo_p10": 0.083,
+   "errors": 0
+  },
+  "C": {
+   "label": "không LoRA, 'a man'",
+   "n": 12,
+   "face_detected": 8,
+   "mean_sim": 0.13,
+   "std": 0.172,
+   "frac_ge_loo_p10": 0.0,
+   "errors": 0
+  }
+ },
+ "jobs": [
+  {
+   "arm": "A",
+   "scene": "standing on a rooftop at sunset, city skyline behind",
+   "seed": 101,
+   "job_id": "8d9c76c5-78a5-42b4-a66b-d6a30e5345e4",
+   "asset_id": "15049fbd-e6a8-420d-999a-13f7048cf0e9",
+   "face": true,
+   "sim": 0.433
+  },
+  {
+   "arm": "B",
+   "scene": "standing on a rooftop at sunset, city skyline behind",
+   "seed": 101,
+   "job_id": "e2a2d732-7821-4c95-ae51-4ef98bd7efa9",
+   "asset_id": "c33d1537-8012-4a40-b60d-f16e60378f23",
+   "face": true,
+   "sim": 0.266
+  },
+  {
+   "arm": "C",
+   "scene": "standing on a rooftop at sunset, city skyline behind",
+   "seed": 101,
+   "job_id": "8aa93231-241a-469a-b6a0-2a01c93e6816",
+   "asset_id": "1b169126-e3b3-447f-9b78-b1f59911fdb3",
+   "face": false,
+   "sim": null
+  },
+  {
+   "arm": "A",
+   "scene": "standing on a rooftop at sunset, city skyline behind",
+   "seed": 202,
+   "job_id": "4447e42a-d259-41f6-b565-796416d901c8",
+   "asset_id": "e9f405ba-2c75-405c-95ab-2981739fd699",
+   "face": true,
+   "sim": 0.798
+  },
+  {
+   "arm": "B",
+   "scene": "standing on a rooftop at sunset, city skyline behind",
+   "seed": 202,
+   "job_id": "def56825-df43-4f9e-a0ec-d5dc8c126e5d",
+   "asset_id": "8e467dbe-21e8-4a90-aba2-41b8028dd353",
+   "face": true,
+   "sim": 0.502
+  },
+  {
+   "arm": "C",
+   "scene": "standing on a rooftop at sunset, city skyline behind",
+   "seed": 202,
+   "job_id": "2626e194-b1c8-4484-9a7a-6f7485a82e7d",
+   "asset_id": "6c5c5efc-e946-4797-9b61-9f8f02c8792e",
+   "face": true,
+   "sim": 0.303
+  },
+  {
+   "arm": "A",
+   "scene": "sitting in a cafe reading a book, warm light",
+   "seed": 101,
+   "job_id": "3408eba7-66d0-4440-87b0-0e1dc00ccff3",
+   "asset_id": "17433302-9a1c-417c-addb-c012386bbd4b",
+   "face": true,
+   "sim": 0.672
+  },
+  {
+   "arm": "B",
+   "scene": "sitting in a cafe reading a book, warm light",
+   "seed": 101,
+   "job_id": "cd6e4de9-2eae-47f3-8e3f-a377f60e2c65",
+   "asset_id": "376ed7b9-fa7f-45e7-a867-3f4f44bd0d4e",
+   "face": true,
+   "sim": 0.711
+  },
+  {
+   "arm": "C",
+   "scene": "sitting in a cafe reading a book, warm light",
+   "seed": 101,
+   "job_id": "324c591a-1b6d-4d5c-bd1e-151d3d00dec1",
+   "asset_id": "dfee704f-bed4-4f9d-893f-9adced3b5f16",
+   "face": true,
+   "sim": 0.082
+  },
+  {
+   "arm": "A",
+   "scene": "sitting in a cafe reading a book, warm light",
+   "seed": 202,
+   "job_id": "92c30ae3-16ce-4667-8706-044468e44596",
+   "asset_id": "da99a5db-4b91-45c5-8e29-331332b3667c",
+   "face": true,
+   "sim": 0.689
+  },
+  {
+   "arm": "B",
+   "scene": "sitting in a cafe reading a book, warm light",
+   "seed": 202,
+   "job_id": "fd238f6d-bb71-4e01-936e-1ddccc423ea5",
+   "asset_id": "abde96c2-7351-49fc-ae51-11c282c97246",
+   "face": true,
+   "sim": 0.484
+  },
+  {
+   "arm": "C",
+   "scene": "sitting in a cafe reading a book, warm light",
+   "seed": 202,
+   "job_id": "cd4f2cb8-aa56-4be7-ac03-b6175aac9578",
+   "asset_id": "5aa22aee-ee8a-464f-8a6a-88d07751d267",
+   "face": true,
+   "sim": 0.461
+  },
+  {
+   "arm": "A",
+   "scene": "walking in the rain holding an umbrella on a street",
+   "seed": 101,
+   "job_id": "8b886658-69fa-41ff-8c3d-33a634a0e0cd",
+   "asset_id": "60a323bd-594c-438d-9c50-eb69cc8b3c4a",
+   "face": true,
+   "sim": 0.776
+  },
+  {
+   "arm": "B",
+   "scene": "walking in the rain holding an umbrella on a street",
+   "seed": 101,
+   "job_id": "bf3b52c1-63b6-4632-a09a-b634db28b4db",
+   "asset_id": "9bdb42f2-4af9-4379-9d02-47a2a1403947",
+   "face": true,
+   "sim": 0.494
+  },
+  {
+   "arm": "C",
+   "scene": "walking in the rain holding an umbrella on a street",
+   "seed": 101,
+   "job_id": "6077b057-6b19-4c29-a887-1a260a3446a6",
+   "asset_id": "59f99068-ad4e-42e3-b84c-f89624e96cb0",
+   "face": false,
+   "sim": null
+  },
+  {
+   "arm": "A",
+   "scene": "walking in the rain holding an umbrella on a street",
+   "seed": 202,
+   "job_id": "8a90908a-5a45-4f68-b71a-b766816e9ac2",
+   "asset_id": "5e710499-e535-460b-8504-1b1449efecb8",
+   "face": true,
+   "sim": 0.778
+  },
+  {
+   "arm": "B",
+   "scene": "walking in the rain holding an umbrella on a street",
+   "seed": 202,
+   "job_id": "eb516768-33ce-495f-a78a-a0adb34f654f",
+   "asset_id": "293bbdf5-f004-4d08-a7ea-3b1ead8e0e4d",
+   "face": true,
+   "sim": 0.534
+  },
+  {
+   "arm": "C",
+   "scene": "walking in the rain holding an umbrella on a street",
+   "seed": 202,
+   "job_id": "2a6b455a-7ecf-4844-90ff-18c08f42595f",
+   "asset_id": "bf75bf13-558e-440d-b9c8-30afce7dcb28",
+   "face": false,
+   "sim": null
+  },
+  {
+   "arm": "A",
+   "scene": "cooking in a bright home kitchen",
+   "seed": 101,
+   "job_id": "cd13405f-6eef-4da2-861d-9568da05e609",
+   "asset_id": "514a56d6-a480-4cab-bc50-a21fcbc015ea",
+   "face": true,
+   "sim": 0.759
+  },
+  {
+   "arm": "B",
+   "scene": "cooking in a bright home kitchen",
+   "seed": 101,
+   "job_id": "f68c846e-8d08-4703-986b-0dde6bc839be",
+   "asset_id": "68dcf571-72a7-4b74-b3f4-d073d71c8dfc",
+   "face": true,
+   "sim": 0.459
+  },
+  {
+   "arm": "C",
+   "scene": "cooking in a bright home kitchen",
+   "seed": 101,
+   "job_id": "573117e7-34ca-4b41-9a31-ebdb84a64683",
+   "asset_id": "2b26b5ab-e016-4f12-8c4d-b66c4bf61ea2",
+   "face": true,
+   "sim": 0.119
+  },
+  {
+   "arm": "A",
+   "scene": "cooking in a bright home kitchen",
+   "seed": 202,
+   "job_id": "42644362-be2e-4941-9e19-2a712bf86971",
+   "asset_id": "88a219a3-89fc-4ca3-aa3f-31d4e6a0da15",
+   "face": true,
+   "sim": 0.799
+  },
+  {
+   "arm": "B",
+   "scene": "cooking in a bright home kitchen",
+   "seed": 202,
+   "job_id": "ca31740e-66a1-4025-a6ca-4daad0cf0266",
+   "asset_id": "46272751-72b2-462a-a1b5-4071e0ee128f",
+   "face": true,
+   "sim": 0.84
+  },
+  {
+   "arm": "C",
+   "scene": "cooking in a bright home kitchen",
+   "seed": 202,
+   "job_id": "4d72b697-d93d-45ac-9f9f-58fde9d79732",
+   "asset_id": "ceaed468-7d1e-4faa-abd8-2ef6cc9d527f",
+   "face": true,
+   "sim": 0.043
+  },
+  {
+   "arm": "A",
+   "scene": "riding a bicycle in a green park",
+   "seed": 101,
+   "job_id": "93fea6a9-e377-41dd-bcb3-3517c6092949",
+   "asset_id": "667414af-ffd0-451c-9248-0d3737995876",
+   "face": true,
+   "sim": 0.563
+  },
+  {
+   "arm": "B",
+   "scene": "riding a bicycle in a green park",
+   "seed": 101,
+   "job_id": "82440ea1-e6f4-4bf2-ba90-75496f20299d",
+   "asset_id": "f48de077-a067-4814-9734-42a56ee7aefe",
+   "face": true,
+   "sim": 0.102
+  },
+  {
+   "arm": "C",
+   "scene": "riding a bicycle in a green park",
+   "seed": 101,
+   "job_id": "2e57f377-c44c-4092-999d-711ddc26c789",
+   "asset_id": "b5a8dad9-b11c-412c-b0ff-9d4a31e0470b",
+   "face": true,
+   "sim": 0.065
+  },
+  {
+   "arm": "A",
+   "scene": "riding a bicycle in a green park",
+   "seed": 202,
+   "job_id": "5ecd548e-693b-443d-9f2d-920941e8ac88",
+   "asset_id": "2581a5f5-baae-40f7-b4a2-014d8908abae",
+   "face": true,
+   "sim": 0.686
+  },
+  {
+   "arm": "B",
+   "scene": "riding a bicycle in a green park",
+   "seed": 202,
+   "job_id": "6fea5abe-5f36-43d2-8462-b56a5974a0ac",
+   "asset_id": "ee830982-93dc-4669-affc-4768518af6ae",
+   "face": true,
+   "sim": 0.719
+  },
+  {
+   "arm": "C",
+   "scene": "riding a bicycle in a green park",
+   "seed": 202,
+   "job_id": "85e7a9a3-ac12-488a-aa32-5154fd638b25",
+   "asset_id": "838be1aa-150f-4906-b2e1-02d526b58bdc",
+   "face": true,
+   "sim": -0.16
+  },
+  {
+   "arm": "A",
+   "scene": "waiting on a train station platform",
+   "seed": 101,
+   "job_id": "b1c0855b-23aa-40b8-b0f8-0d7d5840c6c7",
+   "asset_id": "897242be-67b8-468d-b663-432d35e129ff",
+   "face": true,
+   "sim": 0.653
+  },
+  {
+   "arm": "B",
+   "scene": "waiting on a train station platform",
+   "seed": 101,
+   "job_id": "25e38c86-2ce3-4040-ac45-ea3b11956cb2",
+   "asset_id": "81bf5d10-4a69-4092-9dbf-c149ad1f47fc",
+   "face": true,
+   "sim": 0.497
+  },
+  {
+   "arm": "C",
+   "scene": "waiting on a train station platform",
+   "seed": 101,
+   "job_id": "346628c3-d1d2-418c-a985-9cc840a88233",
+   "asset_id": "b3b70a47-42bd-4ec3-83fc-88e5f522c88a",
+   "face": false,
+   "sim": null
+  },
+  {
+   "arm": "A",
+   "scene": "waiting on a train station platform",
+   "seed": 202,
+   "job_id": "a6dbe15d-ca43-4f1f-b42c-f1de64439703",
+   "asset_id": "82f62ad9-7c24-4796-a139-27228e0dbec1",
+   "face": true,
+   "sim": 0.707
+  },
+  {
+   "arm": "B",
+   "scene": "waiting on a train station platform",
+   "seed": 202,
+   "job_id": "2bbae86d-da6a-4aba-904b-dd8942ab5f7a",
+   "asset_id": "8543bb6b-f20f-4f5d-925f-4af3d85ec00a",
+   "face": true,
+   "sim": 0.512
+  },
+  {
+   "arm": "C",
+   "scene": "waiting on a train station platform",
+   "seed": 202,
+   "job_id": "84a21c11-2382-492d-b7e9-36dd7d800bea",
+   "asset_id": "bd440b76-3044-472b-89cd-57f2b234cb93",
+   "face": true,
+   "sim": 0.129
+  }
+ ]
+}

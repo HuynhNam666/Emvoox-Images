@@ -1,0 +1,11 @@
+# Container của dự án/stack khác mà tôi đã tạm dừng trong lúc làm việc (để biết cách khởi động lại).
+
+## Vẫn đang TẮT (dừng theo yêu cầu "đừng tắt container nào"/giữ tắt trước đó; chưa khởi động lại)
+docker start emvoox-api-1 emvoox-beat-1 emvoox-dispatcher-1 emvoox-postgres-1 emvoox-qdrant-1 emvoox-redis-1 \
+  emvoox-studio-api-1 emvoox-studio-beat-1 emvoox-studio-postgres-1 emvoox-studio-redis-1 emvoox-studio-web-1 \
+  emvoox-studio-worker-gpu-1 emvoox-web-1 emvoox-worker-1 emvoox-worker-gpu-1 \
+  ky-vien-backend-1 ky-vien-tinh-nang-hieu-ung-am-thanh-backend-1 ky-vien-tinh-nang-hieu-ung-am-thanh-web-1 ky-vien-web-1
+(Lưu ý: emvoox-postgres-1 từng bị `docker compose up` của tôi tái tạo; volume emvoox_pgdata còn nguyên.)
+
+## Đã khởi động lại (17/10/2026, sau khi kiểm tra compose)
+emvox-db-1 emvox-web-1 emvox-worker-1 ssa-db ssa-ollama

@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "status": "schema_validated",
+    "note": "Dựng lại từ prompt_relay_ltx23_test_02.json (kijai/ComfyUI-PromptRelay) và đối chiếu schema thật qua /object_info của ComfyUI + PromptRelay + KJNodes + VideoHelperSuite (xem scripts/validate_comfy_workflow.py). Chưa render clip trên GPU: model chưa được tải ở máy kiểm tra.",
+    "source": "https://github.com/kijai/ComfyUI-PromptRelay/tree/main/example_workflows"
+  },
+  "1": {"class_type": "UNETLoader", "inputs": {"unet_name": "ltx-2.3-22b-distilled-1.1_transformer_only_fp8_scaled.safetensors", "weight_dtype": "default"}},
+  "2": {"class_type": "DualCLIPLoader", "inputs": {"clip_name1": "gemma_3_12B_it_fp8_scaled.safetensors", "clip_name2": "ltx-2.3_text_projection_bf16.safetensors", "type": "ltxv", "device": "default"}},
+  "3": {"class_type": "VAELoaderKJ", "inputs": {"vae_name": "LTX23_video_vae_bf16.safetensors", "device": "main_device", "weight_dtype": "bf16"}},
+  "4": {"class_type": "VAELoaderKJ", "inputs": {"vae_name": "LTX23_audio_vae_bf16.safetensors", "device": "main_device", "weight_dtype": "bf16"}},
+  "5": {"class_type": "LoadImage", "inputs": {"image": "keyframe.png"}},
+  "6": {"class_type": "LTXVPreprocess", "inputs": {"image": ["5", 0], "img_compression": 30}},
+  "7": {"class_type": "EmptyLTXVLatentVideo", "inputs": {"width": 512, "height": 896, "length": 97, "batch_size": 1}},
+  "8": {"class_type": "LTXVImgToVideoInplaceKJ", "inputs": {"vae": ["3", 0], "latent": ["7", 0], "num_images": "1", "num_images.image_1": ["6", 0], "num_images.index_1": 0, "num_images.strength_1": 1.0}},
+  "9": {"class_type": "LTXVEmptyLatentAudio", "inputs": {"audio_vae": ["4", 0], "frames_number": 97, "frame_rate": 25, "batch_size": 1}},
+  "10": {"class_type": "LTXVConcatAVLatent", "inputs": {"video_latent": ["8", 0], "audio_latent": ["9", 0]}},
+  "11": {"class_type": "PromptRelayEncode", "inputs": {"model": ["1", 0], "clip": ["2", 0], "latent": ["7", 0], "global_prompt": "", "local_prompts": "", "segment_lengths": "", "epsilon": 0.001}},
+  "12": {"class_type": "ConditioningZeroOut", "inputs": {"conditioning": ["11", 1]}},
+  "13": {"class_type": "LTXVConditioning", "inputs": {"positive": ["11", 1], "negative": ["12", 0], "frame_rate": 25}},
+  "14": {"class_type": "KSamplerSelect", "inputs": {"sampler_name": "euler_ancestral"}},
+  "15": {"class_type": "BasicScheduler", "inputs": {"model": ["11", 0], "scheduler": "linear_quadratic", "steps": 8, "denoise": 1.0}},
+  "16": {"class_type": "SamplerCustom", "inputs": {"model": ["11", 0], "add_noise": true, "noise_seed": 42, "cfg": 1.0, "positive": ["13", 0], "negative": ["13", 1], "sampler": ["14", 0], "sigmas": ["15", 0], "latent_image": ["10", 0]}},
+  "17": {"class_type": "LTXVSeparateAVLatent", "inputs": {"av_latent": ["16", 0]}},
+  "18": {"class_type": "VAEDecode", "inputs": {"samples": ["17", 0], "vae": ["3", 0]}},
+  "19": {"class_type": "LTXVAudioVAEDecode", "inputs": {"samples": ["17", 1], "audio_vae": ["4", 0]}},
+  "20": {"class_type": "VHS_VideoCombine", "inputs": {"images": ["18", 0], "audio": ["19", 0], "frame_rate": 25, "loop_count": 0, "filename_prefix": "emvoox/video", "format": "video/h264-mp4", "pix_fmt": "yuv420p", "crf": 19, "save_metadata": true, "trim_to_audio": false, "pingpong": false, "save_output": true}}
+}

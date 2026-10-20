@@ -1,0 +1,243 @@
+{
+ "jobs": [
+  {
+   "group": "identity",
+   "caption": "front view close-up, neutral expression",
+   "job_id": "a901b3de-a151-497c-8291-5b5946e31e0f",
+   "asset_id": "d005966c-1036-4c70-9e5e-9a63fc673d10"
+  },
+  {
+   "group": "identity",
+   "caption": "left profile close-up",
+   "job_id": "b9337b88-6072-4d9a-be2d-28ebc1344e8d",
+   "asset_id": "e3d0b7b0-9051-44bd-a370-40d5b00a2eaa"
+  },
+  {
+   "group": "identity",
+   "caption": "right profile close-up",
+   "job_id": "8a7e6bc9-aa92-46aa-a046-fb24676ec775",
+   "asset_id": "0cc4bca5-7741-42fe-95fe-24d082321b74"
+  },
+  {
+   "group": "identity",
+   "caption": "three-quarter view from the left, close-up",
+   "job_id": "dd89f14d-7a7b-4ab2-9bcc-dc8f6e631b56",
+   "asset_id": "d78eb736-0e97-471e-835a-a40b32657163"
+  },
+  {
+   "group": "identity",
+   "caption": "three-quarter view from the right, close-up",
+   "job_id": "3ac06f56-f668-4772-91e2-58eb515cc151",
+   "asset_id": "a6ccc800-8b7a-4332-952a-5775913b6491"
+  },
+  {
+   "group": "identity",
+   "caption": "chin raised, looking up, close-up",
+   "job_id": "4d53cbca-8031-4aa3-be23-5fa0adda25cb",
+   "asset_id": "be3d48ed-1cde-4dee-ab49-07321a21b8a6"
+  },
+  {
+   "group": "body",
+   "caption": "full body, front view",
+   "job_id": "e00218d4-95ec-4932-80c4-bd97f62bec89",
+   "asset_id": "dd410db1-b340-4549-a3df-ed8309424f15"
+  },
+  {
+   "group": "body",
+   "caption": "full body, back view",
+   "job_id": "6e171f20-3df2-4bad-9ed2-d8fa27902555",
+   "asset_id": "08c1b4cd-c921-46ba-806b-f3672ac2c028"
+  },
+  {
+   "group": "body",
+   "caption": "full body, left side view",
+   "job_id": "3879e9aa-c63a-473a-9ec8-f96103af0634",
+   "asset_id": "70d04714-e163-4e10-9ef0-f5a33a92e08b"
+  },
+  {
+   "group": "body",
+   "caption": "full body, right side view",
+   "job_id": "9ad8c6b6-9190-4c7e-8074-a99918ea8a05",
+   "asset_id": "67f39bf1-e018-4dd8-af67-f258240c5eb3"
+  },
+  {
+   "group": "body",
+   "caption": "waist-up, front view",
+   "job_id": "09e7adda-212a-43b1-b973-50a73f8d54b8",
+   "asset_id": "d83f8fe7-2a6b-4cf8-979f-272446aa43e7"
+  },
+  {
+   "group": "expression",
+   "caption": "neutral expression",
+   "job_id": "728c0ac0-4f91-400a-8cde-8c16411a5556",
+   "asset_id": "324e14b9-5571-4f35-ad0b-9c12c27b0744"
+  },
+  {
+   "group": "expression",
+   "caption": "happy, smiling",
+   "job_id": "e5c6f5b4-4387-4344-9e05-b0cd5016747b",
+   "asset_id": "c87b4ba4-c117-4ac9-a07d-cb02c01b7d22"
+  },
+  {
+   "group": "expression",
+   "caption": "sad expression",
+   "job_id": "def04ea7-6a82-4bfa-bb07-a6504e3ad0a5",
+   "asset_id": "cc9a262c-877d-43a1-9a5d-4c63c7d4330a"
+  },
+  {
+   "group": "expression",
+   "caption": "angry expression",
+   "job_id": "ea984d32-0f9c-4bc2-8722-67176e1ecbe6",
+   "asset_id": "fb75b883-f4e8-40d1-92cb-27eed5661c42"
+  },
+  {
+   "group": "expression",
+   "caption": "surprised expression",
+   "job_id": "f21b2d93-e3ac-4e98-afaf-cd983507980e",
+   "asset_id": "e977b4b3-4b37-4754-b91f-6f7631f948d0"
+  },
+  {
+   "group": "expression",
+   "caption": "worried expression",
+   "job_id": "56288edc-3a8f-4ccc-b587-cfbc887a5b95",
+   "asset_id": "9bb69bbf-21a0-486f-915a-8435ebcbca5f"
+  },
+  {
+   "group": "pose",
+   "caption": "standing, arms at sides",
+   "job_id": "f3de536d-0996-4a02-90e8-48f8432f1acb",
+   "asset_id": "58e93794-675d-4a51-b996-180b0e7ba965"
+  },
+  {
+   "group": "pose",
+   "caption": "sitting on a chair",
+   "job_id": "796c308c-75b3-4932-aaa7-402a478b17eb",
+   "asset_id": "29739ea7-d75d-480e-be54-d4429faa10aa"
+  },
+  {
+   "group": "pose",
+   "caption": "walking",
+   "job_id": "c967b0d2-8655-4d55-acb9-7524e897f1b6",
+   "asset_id": "8cc52821-895c-4443-a083-578c67a1ab32"
+  },
+  {
+   "group": "pose",
+   "caption": "running",
+   "job_id": "8aad562f-5d35-4836-a906-6556f01b519a",
+   "asset_id": "1ea2c8d7-a19c-4e99-9409-1fece794f768"
+  },
+  {
+   "group": "pose",
+   "caption": "bending forward",
+   "job_id": "dcaf6fb1-207d-4d09-820a-5dc5cafc0152",
+   "asset_id": "395c5266-0f47-463e-84f0-2efd2fce7d02"
+  },
+  {
+   "group": "pose",
+   "caption": "holding a coffee cup",
+   "job_id": "91723571-c4ee-47ff-ab99-7ce6ab4b6241",
+   "asset_id": "2e5a2b09-5f14-4456-b610-8d22dbf80bc7"
+  },
+  {
+   "group": "outfit",
+   "caption": "white shirt, full body",
+   "job_id": "1c71f164-b203-4524-8b94-9fcf5090c8bc",
+   "asset_id": "410d744e-f07f-440f-8104-0175996ed550"
+  },
+  {
+   "group": "outfit",
+   "caption": "black suit, full body",
+   "job_id": "af3985ea-6150-4f69-85be-55ecd5db4f50",
+   "asset_id": "172473fa-2883-430d-8ad4-1816b18dca46"
+  },
+  {
+   "group": "outfit",
+   "caption": "casual hoodie and jeans, full body",
+   "job_id": "2a1a1dc3-052f-4d3b-b395-53d169b22c9b",
+   "asset_id": "265c10cf-d414-41a1-9aae-774481e30a36"
+  },
+  {
+   "group": "outfit",
+   "caption": "navy jacket, upper body detail",
+   "job_id": "aaf1f20a-acaf-4f55-83e4-536a83120c20",
+   "asset_id": "8ab60a56-e953-4734-a262-c55c024256de"
+  },
+  {
+   "group": "appearance",
+   "caption": "wearing black-framed glasses",
+   "job_id": "d5c59f1e-cd78-4714-869d-f15cadaf88e9",
+   "asset_id": "34e7b850-1bfc-44cf-8c38-e70a574a5df7"
+  },
+  {
+   "group": "appearance",
+   "caption": "wearing a black cap",
+   "job_id": "23ddefa8-15bd-4b85-ad3b-9827ea4c911d",
+   "asset_id": "dffdbc13-69d8-4eb4-b474-a3c5d1b63191"
+  },
+  {
+   "group": "appearance",
+   "caption": "wearing a silver wristwatch",
+   "job_id": "2541f854-f26a-419e-aa69-e8d51dfb791a",
+   "asset_id": "6d36782e-0409-4570-a284-9432e8cc4317"
+  },
+  {
+   "group": "style",
+   "caption": "cinematic film look, warm tones",
+   "job_id": "5823248d-9ba4-4d59-a6bf-0f5d79e0040d",
+   "asset_id": "ac274b36-1060-472a-92c1-7b345b8e0735"
+  },
+  {
+   "group": "style",
+   "caption": "studio portrait lighting",
+   "job_id": "811014bf-7811-421e-85a8-3c762a25d074",
+   "asset_id": "48d63a0d-2316-49c3-8708-59f969e8b96c"
+  },
+  {
+   "group": "style",
+   "caption": "outdoor golden hour",
+   "job_id": "84070018-0c91-4e7d-bf92-8242cd2acc6b",
+   "asset_id": "871668c9-04cc-407a-a595-c9e95e663553"
+  },
+  {
+   "group": "scene",
+   "caption": "in a library",
+   "job_id": "31022204-947f-468b-8256-71dddd441170",
+   "asset_id": "0b6ce083-a024-4861-99cb-071a8800ba3b"
+  },
+  {
+   "group": "scene",
+   "caption": "on a city street in the daytime",
+   "job_id": "bdd74418-d48d-4b61-96e9-ed9588f0eb90",
+   "asset_id": "214fe251-5737-4b3e-ba41-93baa3f983a6"
+  },
+  {
+   "group": "scene",
+   "caption": "on a city street at night",
+   "job_id": "182a10c9-59fb-480b-aedb-f49c8fabcc23",
+   "asset_id": "ed6e635d-24bf-4fdd-a9bc-ed0ef8cd7ec2"
+  },
+  {
+   "group": "scene",
+   "caption": "in an office",
+   "job_id": "29d73129-b5aa-4e43-8ca3-91612a397f91",
+   "asset_id": "d797b9f7-8acc-41b3-992d-ef40ba5cd93a"
+  },
+  {
+   "group": "scene",
+   "caption": "in a bedroom",
+   "job_id": "595e0eac-4ce5-4ddc-b64b-0777ae63e118",
+   "asset_id": "6f666b71-4bda-4b5c-99a2-1365e3d67e18"
+  }
+ ],
+ "datasets": {
+  "identity": "328a5157-5bb7-4caf-8f15-3d239094c39d",
+  "body": "56861940-e034-4d64-9c8a-70b8ac2ee1b1",
+  "expression": "d7a7986c-11e0-4a13-bb19-c0992ef9700f",
+  "pose": "fbf13470-611c-4ca8-bffe-fff4c1d5fc8e",
+  "outfit": "f24b5a59-ba7b-4bf1-99d8-2202f5f1d2c2",
+  "appearance": "b53be591-59e7-4fdf-a046-b800c4196ac5",
+  "style": "91ca4ff2-6b62-4eaf-87d5-1149635527b7",
+  "scene": "426a7744-dfe2-4b5c-8efb-494b0252c5e9"
+ },
+ "character_version_id": "7b9c61b9-5288-4bd2-ba85-54a9721b351f"
+}

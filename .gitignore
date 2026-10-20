@@ -1,0 +1,10 @@
+.env
+data/
+node_modules/
+__pycache__/
+*.safetensors
+*.ckpt
+dist/
+.venv/
+.pytest_cache/
+*.log

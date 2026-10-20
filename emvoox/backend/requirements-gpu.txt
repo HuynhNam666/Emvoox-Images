@@ -1,0 +1,13 @@
+-r requirements.txt
+# torch/torchvision come from the CUDA base image; versions below are the set the pinned
+# trainer script (diffusers v0.30.3) was written against. Re-verify before bumping.
+diffusers==0.30.3
+transformers==4.44.2
+accelerate==0.34.2
+peft==0.12.0
+safetensors==0.4.5
+datasets==3.0.1
+ftfy==6.2.3
+tensorboard==2.17.1
+Jinja2==3.1.4
+sentencepiece==0.2.0

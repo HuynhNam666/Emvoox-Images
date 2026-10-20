@@ -1,0 +1,171 @@
+name: emvoox-character-studio
+
+# ===== Chạy trên server (xem docs/SERVER_DEPLOY.md) =====
+#   cp .env.server.example .env            # đổi mật khẩu, API_TOKEN, khóa API
+#   docker compose --profile gpu build
+#   docker compose --profile init run --rm models-init     # tải model (core ≈ 87 GB)
+#   docker compose --profile gpu up -d                     # postgres, redis, api, web, worker-gpu, comfyui
+#   docker compose --profile gpu --profile tls up -d       # thêm HTTPS tự động (Caddy, đặt DOMAIN)
+#   docker compose exec api python scripts/server_selfcheck.py
+
+x-backend-env: &backend-env
+  DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+  REDIS_URL: redis://redis:6379/0
+  ASSET_STORAGE_BACKEND: postgres
+  MODEL_CACHE_DIR: /data/models
+  DATASET_DIR: /data/datasets
+  EXPORT_DIR: /data/exports
+  SDXL_MODEL_ID: ${SDXL_MODEL_ID:-stabilityai/stable-diffusion-xl-base-1.0}
+  HF_TOKEN: ${HF_TOKEN:-}
+  COMFYUI_URL: ${COMFYUI_URL:-http://comfyui:8188}
+  API_TOKEN: ${API_TOKEN:-}
+  COOKIE_SECURE: ${COOKIE_SECURE:-false}
+  COMMERCIAL_USE: ${COMMERCIAL_USE:-false}
+  REQUIRE_C2PA: ${REQUIRE_C2PA:-false}
+  REQUIRE_LABEL: ${REQUIRE_LABEL:-true}
+  C2PA_CERT_PATH: ${C2PA_CERT_PATH:-}
+  C2PA_KEY_PATH: ${C2PA_KEY_PATH:-}
+  C2PA_TSA_URL: ${C2PA_TSA_URL:-}
+  GPU_COST_PER_HOUR: ${GPU_COST_PER_HOUR:-0}
+  STORAGE_COST_PER_GB_MONTH: ${STORAGE_COST_PER_GB_MONTH:-0}
+  QA_COST_PER_REVIEW: ${QA_COST_PER_REVIEW:-0}
+  VIDEO_COST_PER_GPU_SECOND: ${VIDEO_COST_PER_GPU_SECOND:-0}
+  BFL_API_KEY: ${BFL_API_KEY:-}
+  BFL_FLUX3_ENDPOINT: ${BFL_FLUX3_ENDPOINT:-}
+  GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+  GEMINI_IMAGE_MODEL: ${GEMINI_IMAGE_MODEL:-gemini-2.5-flash-image}
+  SEEDREAM_API_KEY: ${SEEDREAM_API_KEY:-}
+  SEEDREAM_MODEL: ${SEEDREAM_MODEL:-seedream-4-5-251128}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  OPENAI_IMAGE_MODEL: ${OPENAI_IMAGE_MODEL:-gpt-image-1}
+
+x-gpu: &gpu
+  reservations:
+    devices:
+      - driver: nvidia
+        count: 1
+        capabilities: [gpu]
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      retries: 12
+    restart: unless-stopped
+
+  redis:
+    image: redis:7
+    command: ["redis-server", "--save", "", "--appendonly", "no"]  # hàng đợi; trạng thái chính thức nằm ở PostgreSQL
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 12
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment: *backend-env
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    ports:
+      - "${API_BIND:-127.0.0.1}:${API_PORT:-8000}:8000"
+    volumes:
+      - datasets:/data/datasets
+      - exports:/data/exports
+      - ${MODEL_CACHE_HOST:-models}:/data/models:ro   # đọc revision/checksum cho preflight
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      api: {condition: service_healthy}
+    ports:
+      - "${WEB_BIND:-127.0.0.1}:${WEB_PORT:-8080}:80"
+    restart: unless-stopped
+
+  # Worker GPU: docker compose --profile gpu up -d
+  worker-gpu:
+    profiles: ["gpu"]
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.gpu
+    environment:
+      <<: *backend-env
+      SDXL_CPU_OFFLOAD: ${SDXL_CPU_OFFLOAD:-false}
+      TORCH_HOME: /data/models/torch
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    volumes:
+      - datasets:/data/datasets
+      - ${MODEL_CACHE_HOST:-models}:/data/models
+    shm_size: "2gb"
+    deploy:
+      resources: *gpu
+    restart: unless-stopped
+
+  # ComfyUI + LTX-2.3 + PromptRelay: chỉ trong mạng nội bộ (ComfyUI không có xác thực) — KHÔNG publish cổng.
+  comfyui:
+    profiles: ["gpu"]
+    build:
+      context: ./deploy/comfyui
+    environment:
+      COMFY_ARGS: ${COMFY_ARGS:-}
+      NVIDIA_VISIBLE_DEVICES: all
+    volumes:
+      - ${MODEL_CACHE_HOST:-models}:/data/models:ro
+      - comfydata:/data/comfy
+    shm_size: "4gb"
+    deploy:
+      resources: *gpu
+    restart: unless-stopped
+
+  # Tải model một lần: docker compose --profile init run --rm models-init   (MODEL_GROUPS=core|all|video,sdxl,...)
+  models-init:
+    profiles: ["init"]
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.gpu
+    command: ["python", "scripts/download_models.py", "--groups", "${MODEL_GROUPS:-core}"]
+    environment:
+      <<: *backend-env
+      TORCH_HOME: /data/models/torch
+    volumes:
+      - ${MODEL_CACHE_HOST:-models}:/data/models
+    restart: "no"
+
+  # HTTPS tự động khi có tên miền: docker compose --profile tls up -d  (đặt DOMAIN, COOKIE_SECURE=true)
+  caddy:
+    profiles: ["tls"]
+    image: caddy:2
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddydata:/data
+    depends_on: [web]
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  datasets:
+  exports:
+  models:
+  comfydata:
+  caddydata:

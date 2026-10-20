@@ -1,0 +1,12 @@
+-r requirements.txt
+# torch 2.6.0+cu124 và torchvision 0.21.0 đã có sẵn trong image nền pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime.
+# Nếu cài ngoài Docker: pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
+diffusers==0.41.0
+transformers==5.20.1
+accelerate==1.15.0
+peft==0.21.2
+datasets==5.1.0
+safetensors==0.8.0
+tensorboard==2.21.0
+httpx==0.28.1   # cho scripts/smoke_gpu.py (TestClient)
+huggingface_hub>=0.30

@@ -5,6 +5,7 @@ import {
   bulkItems, createDataset, createVersion_, listDatasets, listItems, listVersions, manifestUrl, patchItem, uploadFiles,
   type DsGroup, type DsItem, type ImportReport, type ItemStatus, type Split,
 } from "./datasetApi";
+import { confirmDelete, deleteDataset, deleteItems, patchDataset } from "./manageApi";
 import { Alert, Badge, Card, Empty, Field, Icon, PageHead, Spinner, type Tone } from "./ui";
 
 const GROUPS: { key: DsGroup; label: string; hint: string }[] = [
@@ -89,14 +90,14 @@ export function Datasets() {
         </div>
 
         <div>
-          {sel ? <Detail key={sel} id={sel} /> : <Card><Empty icon="layers" title="Chọn hoặc tạo một dataset">Ảnh, caption và các version sẽ hiện ở đây.</Empty></Card>}
+          {sel ? <Detail key={sel} id={sel} onDeleted={() => setSel(null)} /> : <Card><Empty icon="layers" title="Chọn hoặc tạo một dataset">Ảnh, caption và các version sẽ hiện ở đây.</Empty></Card>}
         </div>
       </div>
     </>
   );
 }
 
-function Detail({ id }: { id: string }) {
+function Detail({ id, onDeleted }: { id: string; onDeleted: () => void }) {
   const qc = useQueryClient();
   const ds = useQuery({ queryKey: ["datasets"], queryFn: listDatasets, select: (all) => all.find((d) => d.id === id) });
   const [filter, setFilter] = useState<ItemStatus | "">("");
@@ -115,6 +116,9 @@ function Detail({ id }: { id: string }) {
     onSettled: () => setProgress(null),
   });
   const bulk = useMutation({ mutationFn: (b: Parameters<typeof bulkItems>[1]) => bulkItems(id, b), onSuccess: refresh });
+  const delItems = useMutation({ mutationFn: (ids: string[]) => deleteItems(id, ids), onSuccess: () => { setPicked(new Set()); refresh(); } });
+  const editMeta = useMutation({ mutationFn: (b: { name?: string; license?: string; source?: string }) => patchDataset(id, b), onSuccess: refresh });
+  const delDs = useMutation({ mutationFn: () => deleteDataset(id), onSuccess: () => { qc.invalidateQueries({ queryKey: ["datasets"] }); onDeleted(); } });
   const mkVersion = useMutation({
     mutationFn: (harmonize: boolean) => createVersion_(id, harmonize),
     onMutate: () => setConflict(null),
@@ -135,8 +139,13 @@ function Detail({ id }: { id: string }) {
   return (
     <div className="stack">
       <Card title={d?.name} sub={<>{groupLabel(d?.group)} · Nguồn: {d?.source || "—"} · License: {d?.license || "—"}</>}
-        actions={d && <><Badge tone="ok">{d.counts.approved ?? 0} duyệt</Badge><Badge>{d.counts.pending ?? 0} chờ</Badge><Badge tone="bad">{d.counts.rejected ?? 0} loại</Badge></>}>
+        actions={d && <div className="row"><Badge tone="ok">{d.counts.approved ?? 0} duyệt</Badge><Badge>{d.counts.pending ?? 0} chờ</Badge><Badge tone="bad">{d.counts.rejected ?? 0} loại</Badge>
+          <button className="btn sm" onClick={() => { const n = window.prompt("Tên dataset", d.name); if (n && n.trim()) editMeta.mutate({ name: n.trim() }); }}>Đổi tên</button>
+          <button className="btn sm" onClick={() => { const n = window.prompt("License / quyền sử dụng", d.license ?? ""); if (n !== null) editMeta.mutate({ license: n.trim() }); }}>Sửa license</button>
+          <button className="btn sm" onClick={() => { const n = window.prompt("Nguồn (URL / tác giả)", d.source ?? ""); if (n !== null) editMeta.mutate({ source: n.trim() }); }}>Sửa nguồn</button>
+          <button className="btn sm danger" disabled={delDs.isPending} onClick={() => confirmDelete(`dataset “${d.name}” cùng mọi ảnh và version`) && delDs.mutate()}><Icon name="x" className="sm" />Xóa dataset</button></div>}>
         <div className="stack">
+          {(editMeta.error || delDs.error || delItems.error) && <Alert tone="bad">{err(editMeta.error ?? delDs.error ?? delItems.error)}</Alert>}
           <label className="dropzone">
             <Icon name="upload" />
             <span><strong>Chọn ảnh hoặc ZIP để upload</strong></span>
@@ -168,6 +177,7 @@ function Detail({ id }: { id: string }) {
             <Badge tone={picked.size ? "primary" : ""}>{picked.size} đã chọn</Badge>
             <button className="btn sm" disabled={!picked.size} onClick={() => bulk.mutate({ item_ids: ids, status: "approved" })}><Icon name="check" className="sm" />Duyệt</button>
             <button className="btn sm danger" disabled={!picked.size} onClick={() => bulk.mutate({ item_ids: ids, status: "rejected" })}><Icon name="x" className="sm" />Loại</button>
+            <button className="btn sm danger" disabled={!picked.size || delItems.isPending} onClick={() => confirmDelete(`${picked.size} ảnh đã chọn khỏi dataset`) && delItems.mutate([...picked])}><Icon name="x" className="sm" />Xóa ảnh</button>
             {(["train", "val", "test"] as Split[]).map((s) => <button key={s} className="btn sm" disabled={!picked.size} onClick={() => bulk.mutate({ item_ids: ids, split: s })}>→ {s}</button>)}
             <span className="divider-v" />
             <input placeholder="Trigger (vd emv_a02)" value={trigger} onChange={(e) => setTrigger(e.target.value)} aria-label="Trigger token" />

@@ -169,3 +169,18 @@ Các nhánh: A không LoRA + mô tả chữ · B LoRA chỉ trigger · C "a man"
 | Attempt ảnh | `queued` → `running` → `done` / `failed`; `kind` = `initial` · `repair` · `human_repair` · `manual` |
 | Ứng viên (QC) | `pass` · `review` · `fail` · `pending` |
 | Bản xuất | `released` · `blocked` |
+
+## 8. Thêm / sửa / xóa (quy tắc an toàn)
+
+| Đối tượng | Thêm | Sửa | Xóa |
+|---|---|---|---|
+| Nhân vật | tab Nhân vật | đổi tên, đổi mã, hồ sơ nhận dạng/ảnh chuẩn (tạo version mới) | chỉ khi không còn dataset, LoRA, job nào dùng |
+| Trang phục | tab Bối cảnh & trang phục | mã, mô tả | chặn nếu job ảnh đang dùng |
+| Bối cảnh | tab Bối cảnh & trang phục | đổi tên; sửa nội dung = version mới | chặn nếu job ảnh đang dùng |
+| Dataset | tab Dataset | tên, nguồn, license, nhân vật; **không đổi nhóm** khi đã có version khóa | chặn nếu version đã dùng để huấn luyện; xóa luôn ảnh/version của nó |
+| Ảnh trong dataset | upload | caption, trạng thái, split | xóa ảnh làm việc; version đã khóa vẫn giữ ảnh (bất biến) |
+| Job ảnh / video / SDXL / benchmark | tạo ở các tab | duyệt, sửa tự động | không xóa job đang chạy/chờ; không xóa ảnh đang là khung đầu của video |
+
+- Mọi lần xóa hiện hộp xác nhận và **không hoàn tác**. Ảnh/video chỉ bị xóa khỏi kho khi không còn nơi nào dùng (`app/services/cleanup.py`).
+- Còn bị dùng ⇒ HTTP 409 kèm tên nơi đang dùng; xóa các mục đó trước.
+- API: `PATCH/DELETE /characters/{id}`, `/costumes/{id}`, `/scenes/{code}`, `/datasets/{id}`, `/dataset-items/{id}`, `POST /datasets/{id}/items/delete`, `DELETE /visual/jobs/{id}`, `/video/jobs/{id}`, `/generation-jobs/{id}`, `/benchmark/runs/{id}`, `/exports/{id}`.

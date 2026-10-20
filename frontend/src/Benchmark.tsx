@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { assetUrl } from "./api";
 import { applyBench, createBench, getBench, listBench, listModels, nextRating, sendRating } from "./visualApi";
+import { confirmDelete, deleteBenchmark } from "./manageApi";
 import { Alert, Badge, Card, Empty, Field, Icon, PageHead, Spinner } from "./ui";
 
 const err = (e: unknown) => (e as Error).message;
@@ -16,7 +17,7 @@ export function Benchmark() {
         <NewRun onCreated={setRun} />
         <Runs run={run} onPick={setRun} />
         {run && <Rate runId={run} />}
-        {run && <Results runId={run} />}
+        {run && <Results runId={run} onDeleted={() => setRun("")} />}
       </div>
     </>
   );
@@ -104,10 +105,11 @@ function Rate({ runId }: { runId: string }) {
   );
 }
 
-function Results({ runId }: { runId: string }) {
+function Results({ runId, onDeleted }: { runId: string; onDeleted: () => void }) {
   const qc = useQueryClient();
   const q = useQuery({ queryKey: ["bench-detail", runId], queryFn: () => getBench(runId), refetchInterval: 10000 });
   const ap = useMutation({ mutationFn: () => applyBench(runId), onSuccess: () => qc.invalidateQueries({ queryKey: ["vmodels"] }) });
+  const del = useMutation({ mutationFn: () => deleteBenchmark(runId), onSuccess: () => { qc.invalidateQueries({ queryKey: ["bench"] }); onDeleted(); } });
   const d = q.data;
   if (!d) return null;
   return (
@@ -126,6 +128,8 @@ function Results({ runId }: { runId: string }) {
         <button className="btn" disabled={ap.isPending} onClick={() => ap.mutate()}>Ghi kết quả vào Model Registry (cho Model Router)</button>
         {ap.data && <Badge tone="ok">đã ghi: {ap.data.applied.join(", ") || "chưa đủ 20 ảnh/ model"}</Badge>}
         {ap.error && <Alert tone="bad">{err(ap.error)}</Alert>}
+        <button className="btn danger" disabled={del.isPending} onClick={() => confirmDelete("lượt benchmark này cùng mọi ảnh và điểm chấm") && del.mutate()}><Icon name="x" className="sm" />Xóa lượt benchmark</button>
+        {del.error && <Alert tone="bad">{err(del.error)}</Alert>}
       </div>
       <Alert tone="info">Chỉ chốt model khi đủ mẫu: quy mô báo cáo là 30 cảnh × 4 lần × 5 lựa chọn = 600 ảnh mỗi vòng. Kết quả ít ảnh chỉ mang tính thăm dò.</Alert>
     </Card>

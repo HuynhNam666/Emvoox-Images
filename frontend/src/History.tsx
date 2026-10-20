@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { assetUrl, listCharacters, listJobs, thumbUrl, type HistoryJob } from "./api";
 import { useQueryClient } from "@tanstack/react-query";
 import { reviewImageJob } from "./videoApi";
+import { confirmDelete, deleteGenerationJob } from "./manageApi";
 import { Alert, Badge, Card, Empty, Icon, PageHead, Spinner, type Tone } from "./ui";
 
 const STATE: Record<string, { text: string; tone: Tone }> = {
@@ -96,6 +97,10 @@ function Detail({ job, onClose, onReuse }: { job: HistoryJob; onClose: () => voi
   const [copied, setCopied] = useState(false);
   const qc = useQueryClient();
   const [reviewErr, setReviewErr] = useState<string | null>(null);
+  const remove = async () => {
+    try { setReviewErr(null); await deleteGenerationJob(job.id); qc.invalidateQueries({ queryKey: ["history"] }); onClose(); }
+    catch (e) { setReviewErr((e as Error).message); }
+  };
   const review = async (d: "approved" | "rejected") => {
     try { setReviewErr(null); await reviewImageJob(job.id, d); qc.invalidateQueries({ queryKey: ["history"] }); qc.invalidateQueries({ queryKey: ["approved-images"] }); }
     catch (e) { setReviewErr((e as Error).message); }
@@ -122,6 +127,7 @@ function Detail({ job, onClose, onReuse }: { job: HistoryJob; onClose: () => voi
             <button className="btn sm" disabled={job.state === "approved"} onClick={() => review("approved")}><Icon name="check" className="sm" />Duyệt ảnh</button>
             <button className="btn sm danger" disabled={job.state === "rejected"} onClick={() => review("rejected")}><Icon name="x" className="sm" />Loại</button>
           </>)}
+          {!["queued", "running"].includes(job.state) && <button className="btn sm danger" onClick={() => confirmDelete(`job ${job.id.slice(0, 8)} cùng mọi ảnh`) && remove()}><Icon name="x" className="sm" />Xóa</button>}
           <button className="btn primary sm" onClick={() => onReuse(job)}><Icon name="refresh" className="sm" />Dùng lại tham số</button>
           <button className="btn ghost sm" onClick={onClose} aria-label="Đóng"><Icon name="x" /></button>
         </div>

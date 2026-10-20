@@ -12,13 +12,14 @@ import { Video } from "./Video";
 import { Visual } from "./Visual";
 import { Models, Reports } from "./Reports";
 import { Benchmark } from "./Benchmark";
+import { Scenes } from "./Scenes";
 import { authStatus, login } from "./visualApi";
 import type { HistoryJob } from "./api";
 import { Icon, type IconName } from "./ui";
 
 const qc = new QueryClient();
 
-type Tab = "visual" | "gen" | "hist" | "video" | "lib" | "ds" | "train" | "models" | "bench" | "report";
+type Tab = "visual" | "gen" | "hist" | "video" | "lib" | "ds" | "train" | "scenes" | "models" | "bench" | "report";
 const NAV: { key: Tab; label: string; icon: IconName }[] = [
   { key: "visual", label: "Ảnh theo shot", icon: "film" },
   { key: "gen", label: "Tạo ảnh (SDXL)", icon: "sparkles" },
@@ -27,6 +28,7 @@ const NAV: { key: Tab; label: string; icon: IconName }[] = [
   { key: "lib", label: "Nhân vật", icon: "users" },
   { key: "ds", label: "Dataset", icon: "database" },
   { key: "train", label: "Training", icon: "cpu" },
+  { key: "scenes", label: "Bối cảnh & trang phục", icon: "image" },
   { key: "models", label: "Model", icon: "layers" },
   { key: "bench", label: "Benchmark", icon: "star" },
   { key: "report", label: "Báo cáo", icon: "clock" },
@@ -76,7 +78,7 @@ function App() {
     hist: <History onReuse={(job) => { setReuse({ n: Date.now(), job }); go("gen"); }} />,
     video: <Video />,
     lib: <Library />, ds: <Datasets />, train: <Training />,
-    models: <Models />, bench: <Benchmark />, report: <Reports />,
+    scenes: <Scenes />, models: <Models />, bench: <Benchmark />, report: <Reports />,
   };
   const go = (t: Tab) => { setTab(t); setVisited((v) => (v.has(t) ? v : new Set(v).add(t))); safeSet("emvoox.tab", t); };
 

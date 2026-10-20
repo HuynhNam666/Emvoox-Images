@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { assetUrl, createCharacter, createVersion, getCharacter, listCharacters, thumbUrl, type Identity } from "./api";
+import { confirmDelete, deleteCharacter, patchCharacter } from "./manageApi";
 import { Alert, Badge, Card, Empty, Field, Icon, PageHead, Spinner } from "./ui";
 
 const EMPTY: Identity = { description_vi: "", identity_en: "", negative_prompt: "" };
@@ -57,7 +58,7 @@ export function Library() {
         </div>
 
         <div>
-          {selected ? <Detail id={selected} /> : (
+          {selected ? <Detail id={selected} onDeleted={() => setSelected(null)} /> : (
             <Card><Empty icon="user" title="Chọn một nhân vật">Hồ sơ, ảnh chuẩn và lịch sử version sẽ hiện ở đây.</Empty></Card>
           )}
         </div>
@@ -66,7 +67,7 @@ export function Library() {
   );
 }
 
-function Detail({ id }: { id: string }) {
+function Detail({ id, onDeleted }: { id: string; onDeleted: () => void }) {
   const qc = useQueryClient();
   const q = useQuery({ queryKey: ["character", id], queryFn: () => getCharacter(id) });
   const [draft, setDraft] = useState<{ id: string; v: Identity } | null>(null);
@@ -75,6 +76,8 @@ function Detail({ id }: { id: string }) {
 
   const refresh = () => { qc.invalidateQueries({ queryKey: ["character", id] }); qc.invalidateQueries({ queryKey: ["characters"] }); };
   const save = useMutation({ mutationFn: () => createVersion(id, { identity }), onSuccess: () => { setDraft(null); refresh(); } });
+  const rename = useMutation({ mutationFn: (b: { name?: string; code?: string }) => patchCharacter(id, b), onSuccess: refresh });
+  const remove = useMutation({ mutationFn: () => deleteCharacter(id), onSuccess: () => { qc.invalidateQueries({ queryKey: ["characters"] }); onDeleted(); } });
   const dropRef = useMutation({
     mutationFn: (asset: string) => createVersion(id, { reference_asset_ids: cur!.references.filter((a) => a !== asset) }),
     onSuccess: refresh,
@@ -86,7 +89,12 @@ function Detail({ id }: { id: string }) {
 
   return (
     <div className="stack">
-      <Card title={<>{q.data.code} · {q.data.name}</>} sub="Hồ sơ nhận dạng" actions={<Badge tone="primary">version {cur.version}</Badge>}>
+      <Card title={<>{q.data.code} · {q.data.name}</>} sub="Hồ sơ nhận dạng" actions={<div className="row">
+        <Badge tone="primary">version {cur.version}</Badge>
+        <button className="btn sm" onClick={() => { const n = window.prompt("Tên hiển thị", q.data.name); if (n && n.trim()) rename.mutate({ name: n.trim() }); }}>Đổi tên</button>
+        <button className="btn sm" onClick={() => { const c = window.prompt("Mã nhân vật (chữ, số, _ -)", q.data.code); if (c && c.trim() && c.trim() !== q.data.code) rename.mutate({ code: c.trim() }); }}>Đổi mã</button>
+        <button className="btn sm danger" disabled={remove.isPending} onClick={() => confirmDelete(`nhân vật ${q.data.code} cùng toàn bộ version và ảnh chuẩn`) && remove.mutate()}><Icon name="x" className="sm" />Xóa</button>
+      </div>}>
         <div className="stack">
           <Field label="Mô tả gốc (tiếng Việt)">
             <textarea rows={2} value={identity.description_vi} onChange={(e) => edit({ description_vi: e.target.value })} />
@@ -104,6 +112,7 @@ function Detail({ id }: { id: string }) {
             {changed && <small>Có thay đổi chưa lưu</small>}
           </div>
           {save.error && <Alert tone="bad">{(save.error as Error).message}</Alert>}
+          {(rename.error || remove.error) && <Alert tone="bad">{((rename.error ?? remove.error) as Error).message}</Alert>}
         </div>
       </Card>
 

@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 from app.api_characters import router as characters_router, seed_sample_characters
 from app.api_datasets import router as datasets_router
 from app.api_jobs import router as jobs_router
+from app.api_manage import router as manage_router
 from app.api_reports import router as reports_router
 from app.api_visual import router as visual_router
 from app.auth import TokenAuthMiddleware, router as auth_router
@@ -38,6 +39,7 @@ app.include_router(training_router)
 app.include_router(video_router)
 app.include_router(visual_router)
 app.include_router(reports_router)
+app.include_router(manage_router)
 app.include_router(auth_router)
 app.add_middleware(TokenAuthMiddleware)
 

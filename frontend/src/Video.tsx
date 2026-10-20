@@ -6,6 +6,7 @@ import {
   type RejectReason, type Segment, type VideoJob,
 } from "./videoApi";
 import { exportFileUrl, exportVideo, listVisual } from "./visualApi";
+import { confirmDelete, deleteVideoJob } from "./manageApi";
 import { Alert, Badge, Card, Empty, Field, Icon, PageHead, Segmented, Spinner, type Tone } from "./ui";
 
 const STATE: Record<string, { text: string; tone: Tone }> = {
@@ -206,6 +207,7 @@ function Detail({ id }: { id: string }) {
   const refresh = () => { qc.invalidateQueries({ queryKey: ["video", id] }); qc.invalidateQueries({ queryKey: ["videos"] }); qc.invalidateQueries({ queryKey: ["video-metrics"] }); };
   const review = useMutation({ mutationFn: (d: "approve" | "reject") => reviewVideo(id, d === "approve" ? { decision: d, note } : { decision: d, reason, note }), onSuccess: refresh });
   const ex = useMutation({ mutationFn: () => exportVideo(id, { target: "auto", label: true }) });
+  const del = useMutation({ mutationFn: () => deleteVideoJob(id), onSuccess: refresh });
   const retry = useMutation({ mutationFn: (seed: number) => retryVideo(id, { seed }), onSuccess: refresh });
   const j: VideoJob | undefined = q.data;
   if (!j) return <div className="row"><Spinner /> Đang tải…</div>;
@@ -240,7 +242,10 @@ function Detail({ id }: { id: string }) {
       {j.state === "returned_to_image" && <Alert tone="warn">Lỗi ở ảnh nguồn: quay về tab Tạo ảnh, tạo và duyệt ảnh mới rồi tạo video mới.</Alert>}
       {j.state === "needs_human" && <Alert tone="bad">Đã hết lượt sửa hoặc ngân sách — cần người xử lý.</Alert>}
       {canRetry && <div><button className="btn" disabled={retry.isPending} onClick={() => retry.mutate(Math.floor(Math.random() * 2 ** 31))}><Icon name="refresh" />Sửa tự động (seed mới) · còn {j.max_repairs - j.repair_count} lượt</button></div>}
-      {(review.error || retry.error) && <Alert tone="bad">{err(review.error ?? retry.error)}</Alert>}
+      {(review.error || retry.error || del.error) && <Alert tone="bad">{err(review.error ?? retry.error ?? del.error)}</Alert>}
+      {!["queued", "running"].includes(j.state) && (
+        <div><button className="btn sm danger" disabled={del.isPending} onClick={() => confirmDelete("clip video này cùng các lượt render") && del.mutate()}><Icon name="x" className="sm" />Xóa clip</button></div>
+      )}
       <dl className="kv">
         <dt>Chi phí</dt><dd>{fmt(j.cost_spent)}{j.budget_limit ? ` / ${j.budget_limit}` : ""}</dd>
         <dt>Workflow</dt><dd><code>{j.workflow_version}</code></dd>

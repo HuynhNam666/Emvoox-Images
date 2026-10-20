@@ -5,6 +5,7 @@ import {
   createVisual, exportFileUrl, exportVisual, getVisual, listModels, listScenes, listVisual, reviewVisual,
   type Candidate, type VisualJob,
 } from "./visualApi";
+import { confirmDelete, deleteVisualJob } from "./manageApi";
 import { Alert, Badge, Card, Empty, Field, Icon, PageHead, Segmented, Spinner, type Tone } from "./ui";
 
 const STATE: Record<string, { text: string; tone: Tone }> = {
@@ -175,6 +176,7 @@ function Detail({ id }: { id: string }) {
     onSuccess: refresh,
   });
   const ex = useMutation({ mutationFn: () => exportVisual(id, { target: "auto", label: true }) });
+  const del = useMutation({ mutationFn: () => deleteVisualJob(id), onSuccess: refresh });
   const j: VisualJob | undefined = q.data;
   if (!j) return <div className="row"><Spinner /> Đang tải…</div>;
   const cands = j.candidates ?? [];
@@ -222,7 +224,10 @@ function Detail({ id }: { id: string }) {
           )}
         </div>
       )}
-      {rv.error && <Alert tone="bad">{err(rv.error)}</Alert>}
+      {(rv.error || del.error) && <Alert tone="bad">{err(rv.error ?? del.error)}</Alert>}
+      {!["queued", "running"].includes(j.state) && (
+        <div><button className="btn sm danger" disabled={del.isPending} onClick={() => confirmDelete(`job ảnh ${j.shot_id} cùng mọi ảnh ứng viên`) && del.mutate()}><Icon name="x" className="sm" />Xóa job này</button></div>
+      )}
       <details><summary>Prompt, tuyến, lượt chạy</summary>
         <div className="stack-sm">
           <div className="promptline">{j.prompt}</div>

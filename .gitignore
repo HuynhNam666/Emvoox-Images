@@ -8,3 +8,16 @@ dist/
 .venv/
 .pytest_cache/
 *.log
+
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+models/
+*.safetensors
+*.ckpt
+*.pt
+*.pth

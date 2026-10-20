@@ -6,6 +6,8 @@ FROM ${BASE}
 ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUTF8=1 TORCH_HOME=/data/models/torch
 WORKDIR /app
 COPY requirements.txt requirements-gpu.txt ./
+# mạng chậm/không ổn định: chờ lâu hơn và thử lại nhiều lần thay vì hỏng cả bước build
+ENV PIP_DEFAULT_TIMEOUT=600 PIP_RETRIES=10
 RUN pip install --no-cache-dir -r requirements-gpu.txt \
     && pip install --no-cache-dir --no-deps facenet-pytorch==2.6.0
 COPY . /app/

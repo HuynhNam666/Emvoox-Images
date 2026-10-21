@@ -6,6 +6,7 @@ import {
   type Candidate, type VisualJob,
 } from "./visualApi";
 import { confirmDelete, deleteVisualJob } from "./manageApi";
+import { addReference } from "./api";
 import { Alert, Badge, Card, Empty, Field, Icon, PageHead, Segmented, Spinner, type Tone } from "./ui";
 
 const STATE: Record<string, { text: string; tone: Tone }> = {
@@ -177,6 +178,11 @@ function Detail({ id }: { id: string }) {
   });
   const ex = useMutation({ mutationFn: () => exportVisual(id, { target: "auto", label: true }) });
   const del = useMutation({ mutationFn: () => deleteVisualJob(id), onSuccess: refresh });
+  const chars = useQuery({ queryKey: ["characters"], queryFn: listCharacters });
+  const asRef = useMutation({
+    mutationFn: ({ charId, asset }: { charId: string; asset: string }) => addReference(charId, asset),
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["characters"] }); qc.invalidateQueries({ queryKey: ["character"] }); },
+  });
   const j: VisualJob | undefined = q.data;
   if (!j) return <div className="row"><Spinner /> Đang tải…</div>;
   const cands = j.candidates ?? [];
@@ -211,6 +217,17 @@ function Detail({ id }: { id: string }) {
           </div>
         </div>
       )}
+      {j.state === "approved" && cur && (j.characters ?? []).map((jc) => {
+        const ch = chars.data?.find((c) => c.code === jc.code);
+        return ch ? (
+          <div key={jc.code} className="row">
+            <button className="btn sm" disabled={asRef.isPending || ch.current_version?.references.includes(cur.asset_id)} onClick={() => asRef.mutate({ charId: ch.id, asset: cur.asset_id })}>
+              <Icon name="user" className="sm" />Đặt ảnh này làm ảnh chuẩn của {jc.code}</button>
+            {asRef.isSuccess && <Badge tone="ok">đã thêm</Badge>}
+          </div>
+        ) : null;
+      })}
+      {asRef.error && <Alert tone="bad">{err(asRef.error)}</Alert>}
       {j.state === "approved" && (
         <div className="stack-sm">
           <button className="btn" disabled={ex.isPending} onClick={() => ex.mutate()}><Icon name="download" />Xuất bản (1080×1920 + nhãn AI + C2PA)</button>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { assetUrl, createCharacter, createVersion, getCharacter, listCharacters, thumbUrl, type Identity } from "./api";
-import { confirmDelete, deleteCharacter, patchCharacter } from "./manageApi";
+import { addReference, assetUrl, createCharacter, createVersion, getCharacter, listCharacters, thumbUrl, type Identity } from "./api";
+import { confirmDelete, deleteCharacter, patchCharacter, uploadAsset } from "./manageApi";
 import { Alert, Badge, Card, Empty, Field, Icon, PageHead, Spinner } from "./ui";
 
 const EMPTY: Identity = { description_vi: "", identity_en: "", negative_prompt: "" };
@@ -78,6 +78,10 @@ function Detail({ id, onDeleted }: { id: string; onDeleted: () => void }) {
   const save = useMutation({ mutationFn: () => createVersion(id, { identity }), onSuccess: () => { setDraft(null); refresh(); } });
   const rename = useMutation({ mutationFn: (b: { name?: string; code?: string }) => patchCharacter(id, b), onSuccess: refresh });
   const remove = useMutation({ mutationFn: () => deleteCharacter(id), onSuccess: () => { qc.invalidateQueries({ queryKey: ["characters"] }); onDeleted(); } });
+  const addRefs = useMutation({
+    mutationFn: async (files: File[]) => { for (const f of files) await addReference(id, await uploadAsset(f)); },
+    onSuccess: refresh,
+  });
   const dropRef = useMutation({
     mutationFn: (asset: string) => createVersion(id, { reference_asset_ids: cur!.references.filter((a) => a !== asset) }),
     onSuccess: refresh,
@@ -116,9 +120,14 @@ function Detail({ id, onDeleted }: { id: string; onDeleted: () => void }) {
         </div>
       </Card>
 
-      <Card title="Ảnh chuẩn" sub={`${cur.references.length} ảnh · dùng cho IP-Adapter ở trang Tạo ảnh`}>
+      <Card title="Ảnh chuẩn" sub={`${cur.references.length} ảnh · giữ khuôn mặt khi tạo ảnh (IP-Adapter / đa tham chiếu)`}
+        actions={<label className="btn sm primary" style={{ cursor: "pointer" }}>
+          {addRefs.isPending ? <Spinner /> : <Icon name="upload" className="sm" />}Tải ảnh lên
+          <input type="file" multiple accept="image/png,image/jpeg,image/webp" hidden disabled={addRefs.isPending}
+            onChange={(e) => { if (e.target.files?.length) addRefs.mutate([...e.target.files]); e.target.value = ""; }} />
+        </label>}>
         {cur.references.length === 0 ? (
-          <Empty icon="image" title="Chưa có ảnh chuẩn">Vào “Tạo ảnh”, chọn nhân vật này rồi bấm “Đặt làm ảnh chuẩn” trên ảnh ưng ý.</Empty>
+          <Empty icon="image" title="Chưa có ảnh chuẩn">Bấm “Tải ảnh lên” (nên là ảnh rõ mặt, 1 ảnh mặt + 1 ảnh toàn thân), hoặc duyệt một ảnh ở tab “Ảnh theo shot” rồi bấm “Đặt làm ảnh chuẩn”.</Empty>
         ) : (
           <div className="gallery">
             {cur.references.map((a) => (
@@ -132,6 +141,7 @@ function Detail({ id, onDeleted }: { id: string; onDeleted: () => void }) {
             ))}
           </div>
         )}
+        {addRefs.error && <div style={{ marginTop: 10 }}><Alert tone="bad">{(addRefs.error as Error).message}</Alert></div>}
         {dropRef.error && <div style={{ marginTop: 10 }}><Alert tone="bad">{(dropRef.error as Error).message}</Alert></div>}
       </Card>
 

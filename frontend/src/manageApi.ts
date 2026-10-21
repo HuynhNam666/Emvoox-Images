@@ -29,3 +29,11 @@ export const deleteExport = (id: string) => send("DELETE", `/api/v1/exports/${id
 
 /** Hộp xác nhận trước thao tác xóa (không thể hoàn tác). */
 export const confirmDelete = (what: string) => window.confirm(`Xóa ${what}?\nThao tác này không hoàn tác được.`);
+
+/** Tải một ảnh lên kho asset (JPG/PNG/WebP). Trả id asset. */
+export async function uploadAsset(file: File, kind = "reference"): Promise<string> {
+  const fd = new FormData();
+  fd.append("file", file);
+  const r = await check(await fetch(`/api/v1/assets?kind=${kind}`, { method: "POST", body: fd }));
+  return r.id as string;
+}
